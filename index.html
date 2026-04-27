@@ -8,627 +8,303 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --forest: #1a2e1a;
-      --moss: #2d4a2d;
-      --sage: #5a7a5a;
-      --sand: #c9a96e;
-      --cream: #f5f0e8;
-      --white: #ffffff;
-      --ocean: #1e3a4a;
-      --text: #1a1a1a;
-      --muted: #6b7280;
-      --wa-green: #25D366;
-      --radius: 16px;
-      --radius-sm: 10px;
+      --forest: #1a2e1a; --moss: #2d4a2d; --sage: #5a7a5a;
+      --sand: #c9a96e; --cream: #f5f0e8; --white: #ffffff;
+      --ocean: #1e3a4a; --text: #1a1a1a; --muted: #6b7280;
+      --wa-green: #25D366; --radius: 16px; --radius-sm: 10px;
     }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); line-height: 1.65; overflow-x: hidden; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(26,46,26,0.92);
-      backdrop-filter: blur(12px);
-    }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; color: var(--cream);
-      text-decoration: none; letter-spacing: 0.02em;
-    }
-    .nav-logo span { color: var(--sand); }
+    /* LANG BAR */
+    .lang-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: var(--forest); display: flex; justify-content: flex-end; align-items: center; padding: 6px 48px; gap: 4px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .lang-btn { padding: 5px 13px; border-radius: 50px; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; border: 1.5px solid transparent; color: rgba(245,240,232,0.5); background: transparent; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .lang-btn:hover { color: var(--cream); border-color: rgba(255,255,255,0.2); }
+    .lang-btn.active { color: var(--sand); border-color: rgba(201,169,110,0.4); background: rgba(201,169,110,0.08); }
+    .lang-sep { color: rgba(255,255,255,0.15); font-size: 12px; }
+
+    /* NAV */
+    nav { position: fixed; top: 33px; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(26,46,26,0.92); backdrop-filter: blur(12px); }
+    .nav-logo { height: 64px; width: auto; display: block; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      color: rgba(245,240,232,0.75); text-decoration: none;
-      font-size: 14px; font-weight: 500; letter-spacing: 0.03em;
-      transition: color 0.2s;
-    }
+    .nav-links a { color: rgba(245,240,232,0.75); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; transition: color 0.2s; }
     .nav-links a:hover { color: var(--sand); }
-    .nav-cta {
-      background: var(--sand); color: var(--forest);
-      padding: 10px 22px; border-radius: 50px;
-      font-size: 14px; font-weight: 600; text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-    }
+    .nav-cta { background: var(--sand); color: var(--forest); padding: 10px 22px; border-radius: 50px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.15s; }
     .nav-cta:hover { background: #dbb87c; transform: translateY(-1px); }
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      background: linear-gradient(160deg, var(--forest) 0%, var(--ocean) 60%, #0d2233 100%);
-      display: flex; flex-direction: column; justify-content: center;
-      position: relative; overflow: hidden; padding: 140px 48px 100px;
-    }
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,169,110,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(90,122,90,0.18) 0%, transparent 65%);
-    }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3);
-      color: var(--sand); font-size: 12px; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 8px 18px; border-radius: 50px; margin-bottom: 32px;
-      width: fit-content;
-    }
+    /* HERO */
+    #hero { min-height: 100vh; background: linear-gradient(160deg, var(--forest) 0%, var(--ocean) 60%, #0d2233 100%); display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding: 160px 48px 100px; }
+    #hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,169,110,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 80%, rgba(90,122,90,0.18) 0%, transparent 65%); }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3); color: var(--sand); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 18px; border-radius: 50px; margin-bottom: 32px; width: fit-content; }
     .hero-tag::before { content: '🌿'; font-size: 14px; }
-    #hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(42px, 6vw, 86px);
-      line-height: 1.08; color: var(--cream);
-      max-width: 820px; margin-bottom: 28px;
-      position: relative;
-    }
+    #hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 86px); line-height: 1.08; color: var(--cream); max-width: 820px; margin-bottom: 28px; }
     #hero h1 em { color: var(--sand); font-style: italic; }
-    .hero-sub {
-      font-size: clamp(16px, 2vw, 20px); color: rgba(245,240,232,0.72);
-      max-width: 540px; margin-bottom: 48px; font-weight: 300;
-    }
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); color: rgba(245,240,232,0.72); max-width: 540px; margin-bottom: 48px; font-weight: 300; }
     .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--wa-green); color: white;
-      padding: 16px 30px; border-radius: 50px;
-      font-size: 16px; font-weight: 600; text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(37,211,102,0.35);
-    }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--wa-green); color: white; padding: 16px 30px; border-radius: 50px; font-size: 16px; font-weight: 600; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(37,211,102,0.35); }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,0.45); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1.5px solid rgba(245,240,232,0.35); color: var(--cream);
-      padding: 16px 30px; border-radius: 50px;
-      font-size: 16px; font-weight: 500; text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid rgba(245,240,232,0.35); color: var(--cream); padding: 16px 30px; border-radius: 50px; font-size: 16px; font-weight: 500; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
     .btn-secondary:hover { border-color: var(--sand); background: rgba(201,169,110,0.08); }
-    .hero-stats {
-      display: flex; gap: 48px; margin-top: 72px;
-      padding-top: 40px; border-top: 1px solid rgba(245,240,232,0.12);
-      flex-wrap: wrap;
-    }
-    .hero-stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px; color: var(--sand); font-weight: 700;
-    }
-    .hero-stat-label { font-size: 13px; color: rgba(245,240,232,0.55); margin-top: 4px; letter-spacing: 0.04em; }
-    .hero-flag {
-      position: absolute; bottom: 40px; right: 48px;
-      display: flex; gap: 16px; align-items: center;
-    }
-    .flag-chip {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(245,240,232,0.65);
-      font-size: 12px; font-weight: 500;
-      padding: 8px 16px; border-radius: 50px;
-    }
+    .hero-stats { display: flex; gap: 48px; margin-top: 72px; padding-top: 40px; border-top: 1px solid rgba(245,240,232,0.12); flex-wrap: wrap; }
+    .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--sand); font-weight: 700; }
+    .hero-stat-label { font-size: 13px; color: rgba(245,240,232,0.55); margin-top: 4px; }
+    .hero-flag { position: absolute; bottom: 40px; right: 48px; display: flex; gap: 16px; }
+    .flag-chip { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: rgba(245,240,232,0.65); font-size: 12px; font-weight: 500; padding: 8px 16px; border-radius: 50px; }
 
-    /* ── SECTION SHELLS ── */
+    /* SECTIONS */
     section { padding: 100px 48px; }
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--sage);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(32px, 4vw, 52px);
-      line-height: 1.15; color: var(--forest);
-      margin-bottom: 20px;
-    }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 16px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 52px); line-height: 1.15; color: var(--forest); margin-bottom: 20px; }
     .section-title em { color: var(--sand); font-style: italic; }
-    .section-body {
-      font-size: 18px; color: var(--muted); font-weight: 300;
-      max-width: 560px; line-height: 1.7;
-    }
+    .section-body { font-size: 18px; color: var(--muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
     .container { max-width: 1200px; margin: 0 auto; }
-    .two-col {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
 
-    /* ── DIVIDER ── */
-    .destinations-strip {
-      background: var(--forest);
-      padding: 28px 48px;
-      display: flex; align-items: center; justify-content: center;
-      gap: 60px; flex-wrap: wrap;
-    }
-    .dest-item {
-      display: flex; align-items: center; gap: 12px;
-      color: rgba(245,240,232,0.7); font-size: 14px; font-weight: 500;
-    }
-    .dest-icon { font-size: 22px; }
+    /* DESTINATIONS */
+    .destinations-strip { background: var(--forest); padding: 28px 48px; display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; }
+    .dest-item { display: flex; align-items: center; gap: 12px; color: rgba(245,240,232,0.7); font-size: 14px; font-weight: 500; }
     .dest-sep { color: rgba(201,169,110,0.4); font-size: 20px; }
 
-    /* ── HOW IT WORKS ── */
+    /* HOW */
     #how { background: var(--cream); }
-    .steps-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 24px; margin-top: 64px;
-    }
-    .step-card {
-      background: white; border-radius: var(--radius);
-      padding: 36px 28px;
-      box-shadow: 0 2px 20px rgba(26,46,26,0.06);
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; }
+    .step-card { background: white; border-radius: var(--radius); padding: 36px 28px; box-shadow: 0 2px 20px rgba(26,46,26,0.06); transition: transform 0.2s, box-shadow 0.2s; }
     .step-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(26,46,26,0.12); }
-    .step-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 52px; color: rgba(201,169,110,0.2);
-      font-weight: 700; line-height: 1;
-      margin-bottom: 20px;
-    }
+    .step-num { font-family: 'Playfair Display', serif; font-size: 52px; color: rgba(201,169,110,0.2); font-weight: 700; line-height: 1; margin-bottom: 20px; }
     .step-icon { font-size: 28px; margin-bottom: 16px; }
     .step-title { font-size: 17px; font-weight: 600; color: var(--forest); margin-bottom: 10px; }
     .step-body { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-    /* ── BINATIONAL BLOCK ── */
+    /* BINATIONAL */
     #binational { background: var(--forest); color: var(--cream); }
     #binational .section-title { color: var(--cream); }
     #binational .section-body { color: rgba(245,240,232,0.65); }
-    .bi-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2px; margin-top: 64px;
-      border-radius: var(--radius); overflow: hidden;
-    }
-    .bi-card {
-      padding: 52px 44px;
-      background: rgba(255,255,255,0.04);
-    }
+    .bi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 64px; border-radius: var(--radius); overflow: hidden; }
+    .bi-card { padding: 52px 44px; background: rgba(255,255,255,0.04); }
     .bi-card:first-child { border-right: 1px solid rgba(255,255,255,0.06); }
-    .bi-country {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--sand); margin-bottom: 20px;
-    }
-    .bi-heading {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px; color: var(--cream);
-      margin-bottom: 20px;
-    }
+    .bi-country { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sand); margin-bottom: 20px; }
+    .bi-heading { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--cream); margin-bottom: 20px; }
     .bi-list { list-style: none; }
-    .bi-list li {
-      display: flex; align-items: flex-start; gap: 12px;
-      font-size: 15px; color: rgba(245,240,232,0.7);
-      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
+    .bi-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: rgba(245,240,232,0.7); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .bi-list li:last-child { border-bottom: none; }
-    .bi-check { color: var(--sand); flex-shrink: 0; margin-top: 2px; }
+    .bi-check { color: var(--sand); flex-shrink: 0; }
 
-    /* ── SERVICES ── */
+    /* SERVICES */
     #services { background: white; }
-    .services-intro {
-      display: flex; justify-content: space-between;
-      align-items: flex-end; margin-bottom: 64px; flex-wrap: wrap; gap: 24px;
-    }
-    .plans-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .plan-card {
-      border: 1.5px solid rgba(26,46,26,0.1);
-      border-radius: var(--radius); padding: 40px 32px;
-      position: relative; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
+    .services-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; flex-wrap: wrap; gap: 24px; }
+    .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .plan-card { border: 1.5px solid rgba(26,46,26,0.1); border-radius: var(--radius); padding: 40px 32px; position: relative; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
     .plan-card:hover { border-color: var(--sage); box-shadow: 0 8px 40px rgba(26,46,26,0.1); transform: translateY(-4px); }
-    .plan-card.featured {
-      background: var(--forest); border-color: var(--forest);
-      color: var(--cream);
-    }
-    .plan-badge {
-      position: absolute; top: -14px; left: 32px;
-      background: var(--sand); color: var(--forest);
-      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 5px 14px; border-radius: 50px;
-    }
-    .plan-pct {
-      font-family: 'Playfair Display', serif;
-      font-size: 54px; font-weight: 700; line-height: 1;
-      color: var(--sand); margin-bottom: 6px;
-    }
+    .plan-card.featured { background: var(--forest); border-color: var(--forest); }
+    .plan-badge { position: absolute; top: -14px; left: 32px; background: var(--sand); color: var(--forest); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; }
+    .plan-pct { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 700; line-height: 1; color: var(--sand); margin-bottom: 6px; }
     .plan-pct span { font-size: 22px; font-weight: 400; opacity: 0.7; }
-    .plan-name { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+    .plan-name { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
     .plan-card.featured .plan-name { color: var(--cream); }
     .plan-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
     .plan-card.featured .plan-desc { color: rgba(245,240,232,0.6); }
     .plan-features { list-style: none; margin-bottom: 36px; }
-    .plan-features li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 14px; padding: 9px 0;
-      border-bottom: 1px solid rgba(26,46,26,0.06);
-      color: var(--text);
-    }
+    .plan-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; padding: 9px 0; border-bottom: 1px solid rgba(26,46,26,0.06); color: var(--text); }
     .plan-card.featured .plan-features li { border-color: rgba(255,255,255,0.08); color: rgba(245,240,232,0.8); }
     .plan-features li:last-child { border-bottom: none; }
     .plan-check { color: var(--sage); flex-shrink: 0; }
     .plan-card.featured .plan-check { color: var(--sand); }
-    .plan-cta {
-      display: block; text-align: center;
-      padding: 14px; border-radius: 50px;
-      font-size: 15px; font-weight: 600; text-decoration: none;
-      transition: all 0.2s;
-    }
-    .plan-cta-outline {
-      border: 1.5px solid var(--forest); color: var(--forest);
-    }
+    .plan-cta { display: block; text-align: center; padding: 14px; border-radius: 50px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+    .plan-cta-outline { border: 1.5px solid var(--forest); color: var(--forest); }
     .plan-cta-outline:hover { background: var(--forest); color: white; }
-    .plan-cta-filled {
-      background: var(--sand); color: var(--forest);
-    }
+    .plan-cta-filled { background: var(--sand); color: var(--forest); }
     .plan-cta-filled:hover { background: #dbb87c; }
 
-    /* ── TECH / REPORTING ── */
+    /* TECH */
     #tech { background: var(--cream); }
-    .tech-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px; margin-top: 64px;
-    }
-    .tech-card {
-      background: white; border-radius: var(--radius);
-      padding: 32px 28px;
-      box-shadow: 0 2px 16px rgba(26,46,26,0.06);
-      transition: transform 0.2s;
-    }
+    .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 64px; }
+    .tech-card { background: white; border-radius: var(--radius); padding: 32px 28px; box-shadow: 0 2px 16px rgba(26,46,26,0.06); transition: transform 0.2s; }
     .tech-card:hover { transform: translateY(-3px); }
     .tech-icon { font-size: 32px; margin-bottom: 18px; }
     .tech-card h3 { font-size: 17px; font-weight: 600; color: var(--forest); margin-bottom: 10px; }
     .tech-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-    /* ── CASE STUDY / PERFORMANCE ── */
+    /* PERFORMANCE */
     #performance { background: var(--ocean); color: var(--cream); }
     #performance .section-title { color: var(--cream); }
-    .perf-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 48px; align-items: start; margin-top: 64px;
-    }
-    .perf-property {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius); padding: 36px;
-    }
-    .perf-prop-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; color: var(--cream); margin-bottom: 6px;
-    }
+    .perf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 64px; }
+    .perf-property { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 36px; }
+    .perf-prop-name { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
     .perf-prop-loc { font-size: 13px; color: rgba(245,240,232,0.5); margin-bottom: 28px; letter-spacing: 0.04em; }
     .perf-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .perf-metric { }
-    .perf-val {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px; color: var(--sand); font-weight: 700;
-    }
+    .perf-val { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--sand); font-weight: 700; }
     .perf-key { font-size: 12px; color: rgba(245,240,232,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
-    .perf-note {
-      margin-top: 24px; padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 13px; color: rgba(245,240,232,0.5); font-style: italic;
-    }
-    .perf-quote {
-      padding: 44px;
-      border-left: 3px solid var(--sand);
-    }
-    .perf-quote blockquote {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px; font-style: italic;
-      color: var(--cream); line-height: 1.5; margin-bottom: 24px;
-    }
+    .perf-note { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; color: rgba(245,240,232,0.5); font-style: italic; }
+    .perf-quote { padding: 44px; border-left: 3px solid var(--sand); }
+    .perf-quote blockquote { font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic; color: var(--cream); line-height: 1.5; margin-bottom: 24px; }
     .perf-author { font-size: 14px; color: rgba(245,240,232,0.55); }
     .perf-author strong { display: block; color: var(--cream); font-size: 16px; margin-bottom: 2px; }
 
-    /* ── INVESTOR ── */
+    /* INVESTOR */
     #investor { background: white; }
-    .investor-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: start; margin-top: 64px;
-    }
-    .inv-why h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; color: var(--forest); margin-bottom: 16px;
-    }
+    .investor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 64px; }
+    .inv-why h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--forest); margin-bottom: 16px; }
     .inv-why p { font-size: 15px; color: var(--muted); margin-bottom: 28px; line-height: 1.7; }
     .market-cards { display: flex; flex-direction: column; gap: 16px; }
-    .market-card {
-      border: 1px solid rgba(26,46,26,0.1);
-      border-radius: var(--radius-sm); padding: 24px 28px;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
+    .market-card { border: 1px solid rgba(26,46,26,0.1); border-radius: var(--radius-sm); padding: 24px 28px; transition: border-color 0.2s, box-shadow 0.2s; }
     .market-card:hover { border-color: var(--sage); box-shadow: 0 4px 20px rgba(26,46,26,0.08); }
-    .market-name {
-      font-size: 16px; font-weight: 600; color: var(--forest); margin-bottom: 6px;
-    }
-    .market-tag {
-      display: inline-block;
-      background: rgba(201,169,110,0.12);
-      color: #8a6830; font-size: 11px; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 50px; margin-bottom: 10px;
-    }
+    .market-name { font-size: 16px; font-weight: 600; color: var(--forest); margin-bottom: 6px; }
+    .market-tag { display: inline-block; background: rgba(201,169,110,0.12); color: #8a6830; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 50px; margin-bottom: 10px; }
     .market-desc { font-size: 13px; color: var(--muted); }
-    .inv-process { }
-    .inv-process h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; color: var(--forest); margin-bottom: 28px;
-    }
-    .inv-steps { display: flex; flex-direction: column; gap: 0; }
-    .inv-step {
-      display: flex; gap: 20px;
-      padding: 24px 0; border-bottom: 1px solid rgba(26,46,26,0.06);
-    }
+    .inv-process h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--forest); margin-bottom: 28px; }
+    .inv-steps { display: flex; flex-direction: column; }
+    .inv-step { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(26,46,26,0.06); }
     .inv-step:last-child { border-bottom: none; }
-    .inv-step-n {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--forest); color: var(--cream);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
-    }
+    .inv-step-n { width: 36px; height: 36px; border-radius: 50%; background: var(--forest); color: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
     .inv-step-title { font-size: 16px; font-weight: 600; color: var(--forest); margin-bottom: 6px; }
     .inv-step-body { font-size: 14px; color: var(--muted); }
-    .inv-cta-box {
-      margin-top: 36px; background: var(--cream);
-      border-radius: var(--radius); padding: 32px;
-      border: 1px solid rgba(26,46,26,0.08);
-    }
-    .inv-cta-box p {
-      font-size: 15px; color: var(--muted); margin-bottom: 20px;
-    }
+    .inv-cta-box { margin-top: 36px; background: var(--cream); border-radius: var(--radius); padding: 32px; border: 1px solid rgba(26,46,26,0.08); }
+    .inv-cta-box p { font-size: 15px; color: var(--muted); margin-bottom: 20px; }
 
-    /* ── TRUST ── */
+    /* TRUST */
     #trust { background: var(--cream); }
-    .trust-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 24px; margin-top: 48px;
-    }
-    .trust-card {
-      background: white; border-radius: var(--radius);
-      padding: 36px 28px; text-align: center;
-      box-shadow: 0 2px 16px rgba(26,46,26,0.06);
-    }
-    .trust-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 48px; color: var(--forest); font-weight: 700;
-    }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+    .trust-card { background: white; border-radius: var(--radius); padding: 36px 28px; text-align: center; box-shadow: 0 2px 16px rgba(26,46,26,0.06); }
+    .trust-num { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--forest); font-weight: 700; }
     .trust-label { font-size: 14px; color: var(--muted); margin-top: 8px; }
-    .trust-pillars {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 24px; margin-top: 48px;
-    }
-    .pillar {
-      padding: 28px;
-      border-left: 3px solid var(--sand);
-    }
+    .trust-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .pillar { padding: 28px; border-left: 3px solid var(--sand); }
     .pillar-icon { font-size: 24px; margin-bottom: 12px; }
     .pillar h4 { font-size: 16px; font-weight: 600; color: var(--forest); margin-bottom: 8px; }
     .pillar p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     #about { background: white; }
-    .about-story {
-      max-width: 720px; margin: 0 auto;
-    }
-    .about-story p {
-      font-size: 18px; color: var(--muted); font-weight: 300;
-      line-height: 1.8; margin-bottom: 24px;
-    }
+    .about-story { max-width: 720px; margin: 0 auto; }
+    .about-story p { font-size: 18px; color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 24px; }
     .about-story p strong { color: var(--forest); font-weight: 600; }
-    .about-values {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 24px; margin-top: 64px;
-    }
-    .value-card {
-      text-align: center; padding: 36px 24px;
-      border: 1px solid rgba(26,46,26,0.08);
-      border-radius: var(--radius);
-    }
+    .about-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+    .value-card { text-align: center; padding: 36px 24px; border: 1px solid rgba(26,46,26,0.08); border-radius: var(--radius); }
     .value-icon { font-size: 36px; margin-bottom: 16px; }
     .value-card h4 { font-size: 16px; font-weight: 600; color: var(--forest); margin-bottom: 10px; }
     .value-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-    /* ── WHATSAPP CTA BLOCK ── */
-    #contact {
-      background: var(--forest);
-      text-align: center; padding: 120px 48px;
-    }
+    /* CONTACT */
+    #contact { background: var(--forest); text-align: center; padding: 120px 48px; }
     #contact .section-label { color: var(--sand); }
     #contact .section-title { color: var(--cream); max-width: 640px; margin: 0 auto 20px; }
-    #contact p {
-      font-size: 18px; color: rgba(245,240,232,0.65);
-      max-width: 500px; margin: 0 auto 48px; font-weight: 300;
-    }
+    .contact-body { font-size: 18px; color: rgba(245,240,232,0.65); max-width: 500px; margin: 0 auto 48px; font-weight: 300; }
     .contact-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .wa-big {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: var(--wa-green); color: white;
-      padding: 18px 36px; border-radius: 50px;
-      font-size: 17px; font-weight: 700; text-decoration: none;
-      box-shadow: 0 6px 32px rgba(37,211,102,0.4);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+    .wa-big { display: inline-flex; align-items: center; gap: 12px; background: var(--wa-green); color: white; padding: 18px 36px; border-radius: 50px; font-size: 17px; font-weight: 700; text-decoration: none; box-shadow: 0 6px 32px rgba(37,211,102,0.4); transition: transform 0.2s, box-shadow 0.2s; }
     .wa-big:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
-    .wa-icon { font-size: 22px; }
-    .form-alt {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1.5px solid rgba(245,240,232,0.25);
-      color: rgba(245,240,232,0.8);
-      padding: 18px 36px; border-radius: 50px;
-      font-size: 16px; text-decoration: none;
-      transition: border-color 0.2s;
-    }
+    .form-alt { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid rgba(245,240,232,0.25); color: rgba(245,240,232,0.8); padding: 18px 36px; border-radius: 50px; font-size: 16px; text-decoration: none; transition: border-color 0.2s; }
     .form-alt:hover { border-color: var(--sand); color: var(--sand); }
-    .contact-notes {
-      margin-top: 36px; display: flex; gap: 32px;
-      justify-content: center; flex-wrap: wrap;
-    }
-    .contact-note {
-      font-size: 13px; color: rgba(245,240,232,0.4);
-      display: flex; align-items: center; gap: 6px;
-    }
+    .contact-notes { margin-top: 36px; display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+    .contact-note { font-size: 13px; color: rgba(245,240,232,0.4); display: flex; align-items: center; gap: 6px; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #111a11; padding: 60px 48px 40px;
-    }
-    .footer-top {
-      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 48px; margin-bottom: 60px;
-    }
-    .footer-brand .nav-logo { font-size: 20px; display: block; margin-bottom: 16px; }
-    .footer-brand p { font-size: 14px; color: rgba(245,240,232,0.45); line-height: 1.7; max-width: 240px; }
-    .footer-col h5 {
-      font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: rgba(245,240,232,0.4);
-      margin-bottom: 20px;
-    }
-    .footer-col a {
-      display: block; color: rgba(245,240,232,0.65);
-      text-decoration: none; font-size: 14px;
-      margin-bottom: 12px; transition: color 0.2s;
-    }
+    /* FOOTER */
+    footer { background: #111a11; padding: 60px 48px 40px; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
+    .footer-logo { height: 60px; width: auto; display: block; }
+    .footer-brand p { font-size: 14px; color: rgba(245,240,232,0.45); line-height: 1.7; max-width: 240px; margin-top: 16px; }
+    .footer-col h5 { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,232,0.4); margin-bottom: 20px; }
+    .footer-col a { display: block; color: rgba(245,240,232,0.65); text-decoration: none; font-size: 14px; margin-bottom: 12px; transition: color 0.2s; }
     .footer-col a:hover { color: var(--sand); }
-    .footer-bottom {
-      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-    }
+    .footer-bottom { padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-bottom p { font-size: 13px; color: rgba(245,240,232,0.3); }
-    .footer-ota {
-      display: inline-flex; align-items: center; gap: 6px;
-      border: 1px solid rgba(201,169,110,0.3);
-      color: var(--sand); font-size: 12px;
-      padding: 6px 14px; border-radius: 50px;
-      text-decoration: none; transition: background 0.2s;
-    }
+    .footer-ota { display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(201,169,110,0.3); color: var(--sand); font-size: 12px; padding: 6px 14px; border-radius: 50px; text-decoration: none; transition: background 0.2s; }
     .footer-ota:hover { background: rgba(201,169,110,0.1); }
 
-    /* ── FLOATING WA ── */
-    .wa-fab {
-      position: fixed; bottom: 28px; right: 28px; z-index: 999;
-      width: 60px; height: 60px; border-radius: 50%;
-      background: var(--wa-green);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 28px; text-decoration: none;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: pulse 2.5s infinite;
-    }
-    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.6); animation: none; }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
-      50% { box-shadow: 0 4px 36px rgba(37,211,102,0.75); }
-    }
+    /* WA FAB */
+    .wa-fab { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 60px; height: 60px; border-radius: 50%; background: var(--wa-green); display: flex; align-items: center; justify-content: center; font-size: 28px; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.5); transition: transform 0.2s; animation: pulse 2.5s infinite; }
+    .wa-fab:hover { transform: scale(1.1); animation: none; }
+    @keyframes pulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)} 50%{box-shadow:0 4px 36px rgba(37,211,102,0.75)} }
 
-    /* ── RESPONSIVE ── */
+    /* LANG SYSTEM — hide all lang content by default, show active */
+    [data-lang] { display: none; }
+    body[data-active-lang="en"] [data-lang="en"] { display: revert; }
+    body[data-active-lang="es-ar"] [data-lang="es-ar"] { display: revert; }
+    body[data-active-lang="es-cr"] [data-lang="es-cr"] { display: revert; }
+
+    /* RESPONSIVE */
     @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
-      .nav-links { display: none; }
+      nav { padding: 16px 24px; top: 30px; }
+      .lang-bar { padding: 6px 24px; }
       section { padding: 72px 24px; }
-      #hero { padding: 120px 24px 80px; }
+      #hero { padding: 140px 24px 80px; }
       .steps-grid { grid-template-columns: 1fr 1fr; }
-      .plans-grid { grid-template-columns: 1fr; }
-      .two-col, .bi-grid, .perf-grid, .investor-grid { grid-template-columns: 1fr; gap: 40px; }
+      .plans-grid, .bi-grid, .perf-grid, .investor-grid { grid-template-columns: 1fr; gap: 32px; }
       .trust-grid { grid-template-columns: 1fr 1fr; }
-      .trust-pillars { grid-template-columns: 1fr; }
-      .about-values { grid-template-columns: 1fr 1fr; }
+      .trust-pillars, .about-values { grid-template-columns: 1fr; }
       .tech-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .hero-flag { display: none; }
     }
     @media (max-width: 580px) {
-      .steps-grid { grid-template-columns: 1fr; }
-      .trust-grid { grid-template-columns: 1fr; }
-      .about-values { grid-template-columns: 1fr; }
-      .tech-grid { grid-template-columns: 1fr; }
+      .steps-grid, .trust-grid, .tech-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .hero-stats { gap: 28px; }
+      .destinations-strip { gap: 24px; }
     }
   </style>
 </head>
-<body>
+<body data-active-lang="en">
 
-<!-- ══════════════════════════════════════════════
-     FLOATING WHATSAPP BUTTON
-══════════════════════════════════════════════ -->
-<a class="wa-fab" href="https://wa.me/5491165830249?text=Hi%2C%20I%27m%20interested%20in%20Stay%20Hosting" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+<!-- WA FAB -->
+<a class="wa-fab" href="https://wa.me/5491165830249" target="_blank" aria-label="WhatsApp">💬</a>
 
-<!-- ══════════════════════════════════════════════
-     NAV
-══════════════════════════════════════════════ -->
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang(this,'en')">EN</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn" onclick="setLang(this,'es-ar')">ES · ARG</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn" onclick="setLang(this,'es-cr')">ES · CR</button>
+</div>
+
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-  <img src="https://raw.githubusercontent.com/stayinsantateresa/stayhosting/main/logo%20png%20blanco%20fondo%20transparente.png" alt="Stay Hosting" style="height: 44px; width: auto; display: block;" />
-</a>
+  <a href="#"><img class="nav-logo" src="https://raw.githubusercontent.com/stayinsantateresa/stayhosting/main/logo%20png%20blanco%20fondo%20transparente.png" alt="Stay Hosting" /></a>
   <ul class="nav-links">
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#performance">Results</a></li>
-    <li><a href="#investor">Investors</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#how"><span data-lang="en">How It Works</span><span data-lang="es-ar">Cómo funciona</span><span data-lang="es-cr">Cómo funciona</span></a></li>
+    <li><a href="#services"><span data-lang="en">Services</span><span data-lang="es-ar">Servicios</span><span data-lang="es-cr">Servicios</span></a></li>
+    <li><a href="#performance"><span data-lang="en">Results</span><span data-lang="es-ar">Resultados</span><span data-lang="es-cr">Resultados</span></a></li>
+    <li><a href="#investor"><span data-lang="en">Investors</span><span data-lang="es-ar">Inversores</span><span data-lang="es-cr">Inversionistas</span></a></li>
+    <li><a href="#about"><span data-lang="en">About</span><span data-lang="es-ar">Nosotros</span><span data-lang="es-cr">Nosotros</span></a></li>
   </ul>
-  <a href="https://wa.me/5491165830249?text=Hi%2C%20I%27m%20interested%20in%20Stay%20Hosting" target="_blank" class="nav-cta">Talk to Us →</a>
+  <a href="https://wa.me/5491165830249" target="_blank" class="nav-cta">
+    <span data-lang="en">Talk to Us →</span><span data-lang="es-ar">Hablemos →</span><span data-lang="es-cr">Hablemos →</span>
+  </a>
 </nav>
 
-<!-- ══════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════ -->
+<!-- ══ HERO ══ -->
 <section id="hero">
-  <div class="hero-tag">Boutique · Performance-driven · Tech-enabled</div>
-  <h1>Your property.<br /><em>Managed like<br />a business.</em></h1>
-  <p class="hero-sub">We combine on-the-ground operations in Costa Rica with remote revenue management from Argentina — so your property earns more while you stay hands-off.</p>
-  <div class="hero-actions">
-    <a href="https://wa.me/5491165830249?text=Hi%2C%20I%27m%20interested%20in%20Stay%20Hosting" target="_blank" class="btn-primary">
-      <span class="wa-icon">💬</span> Let's Talk on WhatsApp
-    </a>
-    <a href="#how" class="btn-secondary">How It Works ↓</a>
+  <div data-lang="en">
+    <div class="hero-tag">Boutique · Performance-driven · Tech-enabled</div>
+    <h1>Your property.<br /><em>Managed like<br />a business.</em></h1>
+    <p class="hero-sub">We combine on-the-ground operations in Costa Rica with remote revenue management from Argentina — so your property earns more while you stay hands-off.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5491165830249?text=Hi%2C%20I%27m%20interested%20in%20Stay%20Hosting" target="_blank" class="btn-primary">💬 Let's Talk on WhatsApp</a>
+      <a href="#how" class="btn-secondary">How It Works ↓</a>
+    </div>
+  </div>
+  <div data-lang="es-ar">
+    <div class="hero-tag">Boutique · Orientado al rendimiento · Tech-enabled</div>
+    <h1>Tu propiedad.<br /><em>Gestionada como<br />un negocio.</em></h1>
+    <p class="hero-sub">Combinamos operaciones en el terreno en Costa Rica con optimización remota desde Argentina — para que tu propiedad genere más, sin que tengas que ocuparte de nada.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5491165830249?text=Hola%2C%20me%20interesa%20Stay%20Hosting" target="_blank" class="btn-primary">💬 Hablemos por WhatsApp</a>
+      <a href="#how" class="btn-secondary">Cómo funciona ↓</a>
+    </div>
+  </div>
+  <div data-lang="es-cr">
+    <div class="hero-tag">Boutique · Orientado al rendimiento · Tech-enabled</div>
+    <h1>Su propiedad.<br /><em>Administrada como<br />un negocio.</em></h1>
+    <p class="hero-sub">Combinamos operaciones en Costa Rica con optimización remota desde Argentina — para que su propiedad genere más ingresos mientras usted se despreocupa.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5491165830249?text=Hola%2C%20me%20interesa%20Stay%20Hosting" target="_blank" class="btn-primary">💬 Hablemos por WhatsApp</a>
+      <a href="#how" class="btn-secondary">Cómo funciona ↓</a>
+    </div>
   </div>
   <div class="hero-stats">
-    <div>
-      <div class="hero-stat-num">77%</div>
-      <div class="hero-stat-label">Average annual occupancy</div>
-    </div>
-    <div>
-      <div class="hero-stat-num">+40%</div>
-      <div class="hero-stat-label">Revenue vs. self-managed</div>
-    </div>
-    <div>
-      <div class="hero-stat-num">2</div>
-      <div class="hero-stat-label">Countries, one team</div>
-    </div>
-    <div>
-      <div class="hero-stat-num">24h</div>
-      <div class="hero-stat-label">Average response to owners</div>
-    </div>
+    <div><div class="hero-stat-num">78%</div><div class="hero-stat-label"><span data-lang="en">Average annual occupancy</span><span data-lang="es-ar">Ocupación anual promedio</span><span data-lang="es-cr">Ocupación anual promedio</span></div></div>
+    <div><div class="hero-stat-num">+40%</div><div class="hero-stat-label"><span data-lang="en">Revenue vs. self-managed</span><span data-lang="es-ar">Ingresos vs. autogestión</span><span data-lang="es-cr">Ingresos vs. autogestión</span></div></div>
+    <div><div class="hero-stat-num">2</div><div class="hero-stat-label"><span data-lang="en">Countries, one team</span><span data-lang="es-ar">Países, un equipo</span><span data-lang="es-cr">Países, un equipo</span></div></div>
+    <div><div class="hero-stat-num">24h</div><div class="hero-stat-label"><span data-lang="en">Average response to owners</span><span data-lang="es-ar">Respuesta promedio a propietarios</span><span data-lang="es-cr">Respuesta promedio a propietarios</span></div></div>
   </div>
   <div class="hero-flag">
     <div class="flag-chip">🌿 Costa Rica</div>
@@ -636,485 +312,399 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     DESTINATIONS STRIP
-══════════════════════════════════════════════ -->
+<!-- DESTINATIONS STRIP -->
 <div class="destinations-strip">
-  <div class="dest-item"><span class="dest-icon">🏖</span> Santa Teresa, CR</div>
+  <div class="dest-item">🏖 Santa Teresa, CR</div>
   <div class="dest-sep">·</div>
-  <div class="dest-item"><span class="dest-icon">🌿</span> Montezuma, CR</div>
+  <div class="dest-item">🌿 Montezuma, CR</div>
   <div class="dest-sep">·</div>
-  <div class="dest-item"><span class="dest-icon">🏔</span> Patagonia, AR</div>
+  <div class="dest-item">🏔 Patagonia, AR</div>
   <div class="dest-sep">·</div>
-  <div class="dest-item"><span class="dest-icon">🏞</span> Costa Atlántica, AR</div>
+  <div class="dest-item">🏞 <span data-lang="en">Lake District, AR</span><span data-lang="es-ar">Distrito de los Lagos, AR</span><span data-lang="es-cr">Distrito de los Lagos, AR</span></div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     HOW IT WORKS
-══════════════════════════════════════════════ -->
+<!-- ══ HOW IT WORKS ══ -->
 <section id="how">
   <div class="container">
-    <div class="section-label">How It Works</div>
-    <h2 class="section-title">Simple for you.<br /><em>Serious for us.</em></h2>
-    <p class="section-body">No complicated contracts. No guesswork. You bring a property with potential — we handle everything from there.</p>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <div class="step-icon">🔍</div>
-        <div class="step-title">Property Evaluation</div>
-        <div class="step-body">We assess your property's potential — location, condition, market positioning — and give you a realistic revenue estimate. No fluff.</div>
+    <div data-lang="en">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Simple for you.<br /><em>Serious for us.</em></h2>
+      <p class="section-body">No complicated contracts. No guesswork. You bring a property with potential — we handle everything from there.</p>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">01</div><div class="step-icon">🔍</div><div class="step-title">Property Evaluation</div><div class="step-body">We assess your property's potential — location, condition, market positioning — and give you a realistic revenue estimate. No fluff.</div></div>
+        <div class="step-card"><div class="step-num">02</div><div class="step-icon">🛠</div><div class="step-title">Setup & Listing</div><div class="step-body">Professional photography, platform optimization, pricing strategy, and listing creation across Airbnb, Booking.com, and our own OTA.</div></div>
+        <div class="step-card"><div class="step-num">03</div><div class="step-icon">📊</div><div class="step-title">Active Revenue Management</div><div class="step-body">Dynamic pricing, demand tracking, and channel management — updated daily from our Argentina office to maximize your yield.</div></div>
+        <div class="step-card"><div class="step-num">04</div><div class="step-icon">📱</div><div class="step-title">Reporting & Transparency</div><div class="step-body">Monthly owner reports with real numbers: occupancy, revenue, expenses, and reviews. You always know what's happening.</div></div>
       </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-icon">🛠</div>
-        <div class="step-title">Setup & Listing</div>
-        <div class="step-body">Professional photography, platform optimization, pricing strategy, and listing creation across Airbnb, Booking.com, and our own OTA.</div>
+    </div>
+    <div data-lang="es-ar">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Simple para vos.<br /><em>Serio para nosotros.</em></h2>
+      <p class="section-body">Sin contratos complicados. Sin suposiciones. Vos traés una propiedad con potencial — nosotros nos encargamos del resto.</p>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">01</div><div class="step-icon">🔍</div><div class="step-title">Evaluación de la propiedad</div><div class="step-body">Analizamos el potencial de tu propiedad — ubicación, estado, posicionamiento de mercado — y te damos una estimación de ingresos realista. Sin vueltas.</div></div>
+        <div class="step-card"><div class="step-num">02</div><div class="step-icon">🛠</div><div class="step-title">Preparación y publicación</div><div class="step-body">Fotografía profesional, optimización de plataformas, estrategia de precios y publicación en Airbnb, Booking.com y nuestra propia OTA.</div></div>
+        <div class="step-card"><div class="step-num">03</div><div class="step-icon">📊</div><div class="step-title">Revenue management activo</div><div class="step-body">Precios dinámicos, seguimiento de demanda y gestión de canales — actualizados a diario desde nuestra oficina en Argentina para maximizar tus ganancias.</div></div>
+        <div class="step-card"><div class="step-num">04</div><div class="step-icon">📱</div><div class="step-title">Reportes y transparencia</div><div class="step-body">Informes mensuales con números reales: ocupación, ingresos, gastos y reseñas. Siempre sabés lo que está pasando.</div></div>
       </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-icon">📊</div>
-        <div class="step-title">Active Revenue Management</div>
-        <div class="step-body">Dynamic pricing, demand tracking, and channel management — updated daily from our Argentina office to maximize your yield.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">04</div>
-        <div class="step-icon">📱</div>
-        <div class="step-title">Reporting & Transparency</div>
-        <div class="step-body">Monthly owner reports with real numbers: occupancy, revenue, expenses, and reviews. You always know what's happening.</div>
+    </div>
+    <div data-lang="es-cr">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Simple para usted.<br /><em>Serio para nosotros.</em></h2>
+      <p class="section-body">Sin contratos complicados. Sin suposiciones. Usted nos trae una propiedad con potencial — nosotros nos encargamos del resto.</p>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">01</div><div class="step-icon">🔍</div><div class="step-title">Evaluación de la propiedad</div><div class="step-body">Analizamos el potencial de su propiedad — ubicación, estado, posicionamiento de mercado — y le brindamos una estimación de ingresos realista. Sin rodeos.</div></div>
+        <div class="step-card"><div class="step-num">02</div><div class="step-icon">🛠</div><div class="step-title">Preparación y publicación</div><div class="step-body">Fotografía profesional, optimización de plataformas, estrategia de precios y publicación en Airbnb, Booking.com y nuestra propia OTA.</div></div>
+        <div class="step-card"><div class="step-num">03</div><div class="step-icon">📊</div><div class="step-title">Gestión activa de ingresos</div><div class="step-body">Precios dinámicos, seguimiento de demanda y gestión de canales — actualizados a diario desde Argentina para maximizar sus ingresos.</div></div>
+        <div class="step-card"><div class="step-num">04</div><div class="step-icon">📱</div><div class="step-title">Reportes y transparencia</div><div class="step-body">Informes mensuales con números reales: ocupación, ingresos, gastos y reseñas. Usted siempre sabe qué está pasando.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     BINATIONAL OPERATION
-══════════════════════════════════════════════ -->
+<!-- ══ BINATIONAL ══ -->
 <section id="binational">
   <div class="container">
-    <div class="section-label" style="color: var(--sand);">Our Model</div>
-    <h2 class="section-title">Local hands.<br /><em>Global thinking.</em></h2>
-    <p class="section-body">Most property managers operate locally and stop there. We built a binational structure specifically to give your property an unfair advantage.</p>
+    <div data-lang="en"><div class="section-label" style="color:var(--sand)">Our Model</div><h2 class="section-title">Local hands.<br /><em>Global thinking.</em></h2><p class="section-body">Most property managers operate locally and stop there. We built a binational structure specifically to give your property an unfair advantage.</p></div>
+    <div data-lang="es-ar"><div class="section-label" style="color:var(--sand)">Nuestro modelo</div><h2 class="section-title">Presencia local.<br /><em>Visión global.</em></h2><p class="section-body">La mayoría de los administradores operan solo de forma local. Nosotros construimos una estructura binacional para darle a tu propiedad una ventaja real.</p></div>
+    <div data-lang="es-cr"><div class="section-label" style="color:var(--sand)">Nuestro modelo</div><h2 class="section-title">Presencia local.<br /><em>Visión global.</em></h2><p class="section-body">La mayoría de los administradores operan solo de forma local. Nosotros construimos una estructura binacional para darle a su propiedad una ventaja real.</p></div>
     <div class="bi-grid">
       <div class="bi-card">
-        <div class="bi-country">🌿 Costa Rica — On the Ground</div>
-        <div class="bi-heading">Where things actually happen</div>
+        <div class="bi-country">🌿 Costa Rica — <span data-lang="en">On the Ground</span><span data-lang="es-ar">En el terreno</span><span data-lang="es-cr">En el terreno</span></div>
+        <div class="bi-heading"><span data-lang="en">Where things actually happen</span><span data-lang="es-ar">Donde todo sucede</span><span data-lang="es-cr">Donde todo sucede</span></div>
         <ul class="bi-list">
-          <li><span class="bi-check">✦</span> Guest check-in and on-site experience</li>
-          <li><span class="bi-check">✦</span> Cleaning and housekeeping coordination</li>
-          <li><span class="bi-check">✦</span> Maintenance and local supplier network</li>
-          <li><span class="bi-check">✦</span> Property inspections after every stay</li>
-          <li><span class="bi-check">✦</span> Emergency response, 7 days a week</li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Guest check-in and on-site experience</span><span data-lang="es-ar">Check-in de huéspedes y experiencia presencial</span><span data-lang="es-cr">Check-in de huéspedes y experiencia en el lugar</span></li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Cleaning and housekeeping coordination</span><span data-lang="es-ar">Coordinación de limpieza y housekeeping</span><span data-lang="es-cr">Coordinación de limpieza y orden</span></li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Maintenance and local supplier network</span><span data-lang="es-ar">Mantenimiento y red de proveedores locales</span><span data-lang="es-cr">Mantenimiento y red de proveedores locales</span></li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Property inspections after every stay</span><span data-lang="es-ar">Inspección de la propiedad tras cada estadía</span><span data-lang="es-cr">Inspección de la propiedad después de cada estadía</span></li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Emergency response, 7 days a week</span><span data-lang="es-ar">Respuesta a emergencias, 7 días a la semana</span><span data-lang="es-cr">Atención de emergencias, 7 días a la semana</span></li>
         </ul>
       </div>
       <div class="bi-card">
-        <div class="bi-country">🏔 Argentina — Remote Optimization</div>
-        <div class="bi-heading">Where performance is built</div>
+        <div class="bi-country">🏔 Argentina — <span data-lang="en">Remote Optimization</span><span data-lang="es-ar">Optimización remota</span><span data-lang="es-cr">Optimización remota</span></div>
+        <div class="bi-heading"><span data-lang="en">Where performance is built</span><span data-lang="es-ar">Donde se construye el rendimiento</span><span data-lang="es-cr">Donde se construye el rendimiento</span></div>
         <ul class="bi-list">
-          <li><span class="bi-check">✦</span> Revenue management and dynamic pricing</li>
-          <li><span class="bi-check">✦</span> Guest communication (pre/during/post stay)</li>
-          <li><span class="bi-check">✦</span> Platform management: Airbnb, Booking, OTA</li>
-          <li><span class="bi-check">✦</span> Owner reporting and financial statements</li>
-          <li><span class="bi-check">✦</span> Analytics, benchmarking, and strategy</li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Revenue management and dynamic pricing</span><span data-lang="es-ar">Revenue management y precios dinámicos</span><span data-lang="es-cr">Gestión de ingresos y precios dinámicos</span></li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Guest communication (pre/during/post stay)</span><span data-lang="es-ar">Comunicación con huéspedes (antes, durante y después)</span><span data-lang="es-cr">Comunicación con huéspedes (antes, durante y después)</span></li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Platform management: Airbnb, Booking, OTA</span><span data-lang="es-ar">Gestión de plataformas: Airbnb, Booking, OTA</span><span data-lang="es-cr">Gestión de plataformas: Airbnb, Booking, OTA</span></li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Owner reporting and financial statements</span><span data-lang="es-ar">Reportes para propietarios y estados financieros</span><span data-lang="es-cr">Reportes para propietarios y estados financieros</span></li>
+          <li><span class="bi-check">✦</span><span data-lang="en">Analytics, benchmarking, and strategy</span><span data-lang="es-ar">Analítica, benchmarking y estrategia</span><span data-lang="es-cr">Analítica, comparativas y estrategia</span></li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     SERVICES / PRICING
-══════════════════════════════════════════════ -->
+<!-- ══ SERVICES ══ -->
 <section id="services">
   <div class="container">
     <div class="services-intro">
       <div>
-        <div class="section-label">Services & Pricing</div>
-        <h2 class="section-title">Transparent fees.<br /><em>Real results.</em></h2>
+        <div data-lang="en"><div class="section-label">Services & Pricing</div><h2 class="section-title">Transparent fees.<br /><em>Real results.</em></h2></div>
+        <div data-lang="es-ar"><div class="section-label">Servicios y precios</div><h2 class="section-title">Tarifas claras.<br /><em>Resultados reales.</em></h2></div>
+        <div data-lang="es-cr"><div class="section-label">Servicios y tarifas</div><h2 class="section-title">Tarifas transparentes.<br /><em>Resultados reales.</em></h2></div>
       </div>
-      <p style="max-width:360px; font-size:16px; color:var(--muted);">We don't lock you into rigid contracts. Pick the level of involvement that fits your situation — and your property.</p>
+      <p style="max-width:360px;font-size:16px;color:var(--muted)"><span data-lang="en">We don't lock you into rigid contracts. Pick the level of involvement that fits your situation — and your property.</span><span data-lang="es-ar">Sin contratos rígidos. Elegí el nivel de servicio que mejor se adapte a tu situación y a tu propiedad.</span><span data-lang="es-cr">Sin contratos rígidos. Elija el nivel de servicio que mejor se adapte a su situación y a su propiedad.</span></p>
     </div>
     <div class="plans-grid">
-      <!-- Essential -->
       <div class="plan-card">
         <div class="plan-pct">15<span>%</span></div>
-        <div class="plan-name">Essential</div>
-        <div class="plan-desc">For owners who want basic platform management without full-service operations.</div>
+        <div class="plan-name"><span data-lang="en">Essential</span><span data-lang="es-ar">Esencial</span><span data-lang="es-cr">Esencial</span></div>
+        <div class="plan-desc"><span data-lang="en">For owners who want platform management without full-service operations.</span><span data-lang="es-ar">Para propietarios que quieren gestión de plataformas sin operaciones completas.</span><span data-lang="es-cr">Para propietarios que desean gestión de plataformas sin servicio completo.</span></div>
         <ul class="plan-features">
-          <li><span class="plan-check">✓</span> Listing optimization & photography brief</li>
-          <li><span class="plan-check">✓</span> Dynamic pricing management</li>
-          <li><span class="plan-check">✓</span> Guest communication pre-arrival</li>
-          <li><span class="plan-check">✓</span> Monthly revenue report</li>
-          <li><span class="plan-check">✓</span> Platform management (Airbnb, Booking)</li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Listing optimization & photography brief</span><span data-lang="es-ar">Optimización de anuncio y brief de fotografía</span><span data-lang="es-cr">Optimización de anuncio y brief fotográfico</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Dynamic pricing management</span><span data-lang="es-ar">Gestión de precios dinámicos</span><span data-lang="es-cr">Gestión de precios dinámicos</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Guest communication pre-arrival</span><span data-lang="es-ar">Comunicación con huéspedes antes de la llegada</span><span data-lang="es-cr">Comunicación con huéspedes antes de la llegada</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Monthly revenue report</span><span data-lang="es-ar">Reporte mensual de ingresos</span><span data-lang="es-cr">Reporte mensual de ingresos</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Platform management (Airbnb, Booking)</span><span data-lang="es-ar">Gestión de plataformas (Airbnb, Booking)</span><span data-lang="es-cr">Gestión de plataformas (Airbnb, Booking)</span></li>
         </ul>
-        <a href="https://wa.me/5491165830249?text=I%27m%20interested%20in%20the%20Essential%20plan" target="_blank" class="plan-cta plan-cta-outline">Enquire via WhatsApp</a>
+        <a href="https://wa.me/5491165830249" target="_blank" class="plan-cta plan-cta-outline"><span data-lang="en">Enquire via WhatsApp</span><span data-lang="es-ar">Consultá por WhatsApp</span><span data-lang="es-cr">Consulte por WhatsApp</span></a>
       </div>
-      <!-- Full Service -->
       <div class="plan-card featured">
-        <div class="plan-badge">Most Popular</div>
+        <div class="plan-badge"><span data-lang="en">Most Popular</span><span data-lang="es-ar">Más elegido</span><span data-lang="es-cr">Más elegido</span></div>
         <div class="plan-pct">20<span>%</span></div>
-        <div class="plan-name">Full Service</div>
-        <div class="plan-desc">Everything handled. You collect revenue — we manage the rest.</div>
+        <div class="plan-name"><span data-lang="en">Full Service</span><span data-lang="es-ar">Servicio completo</span><span data-lang="es-cr">Servicio completo</span></div>
+        <div class="plan-desc"><span data-lang="en">Everything handled. You collect revenue — we manage the rest.</span><span data-lang="es-ar">Todo resuelto. Vos cobrás — nosotros gestionamos el resto.</span><span data-lang="es-cr">Todo resuelto. Usted cobra — nosotros administramos el resto.</span></div>
         <ul class="plan-features">
-          <li><span class="plan-check">✓</span> Everything in Essential</li>
-          <li><span class="plan-check">✓</span> Check-in / check-out coordination</li>
-          <li><span class="plan-check">✓</span> Cleaning & housekeeping oversight</li>
-          <li><span class="plan-check">✓</span> Maintenance coordination</li>
-          <li><span class="plan-check">✓</span> Guest experience management</li>
-          <li><span class="plan-check">✓</span> Owner dashboard access</li>
-          <li><span class="plan-check">✓</span> Distribution on stayinsantateresa.com</li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Everything in Essential</span><span data-lang="es-ar">Todo lo del plan Esencial</span><span data-lang="es-cr">Todo lo del plan Esencial</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Check-in / check-out coordination</span><span data-lang="es-ar">Coordinación de check-in / check-out</span><span data-lang="es-cr">Coordinación de check-in / check-out</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Cleaning & housekeeping oversight</span><span data-lang="es-ar">Supervisión de limpieza y housekeeping</span><span data-lang="es-cr">Supervisión de limpieza y housekeeping</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Maintenance coordination</span><span data-lang="es-ar">Coordinación de mantenimiento</span><span data-lang="es-cr">Coordinación de mantenimiento</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Guest experience management</span><span data-lang="es-ar">Gestión de experiencia del huésped</span><span data-lang="es-cr">Gestión de experiencia del huésped</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Owner dashboard access</span><span data-lang="es-ar">Acceso al panel del propietario</span><span data-lang="es-cr">Acceso al panel del propietario</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Distribution on stayinsantateresa.com</span><span data-lang="es-ar">Distribución en stayinsantateresa.com</span><span data-lang="es-cr">Distribución en stayinsantateresa.com</span></li>
         </ul>
-        <a href="https://wa.me/5491165830249?text=I%27m%20interested%20in%20the%20Full%20Service%20plan" target="_blank" class="plan-cta plan-cta-filled">Enquire via WhatsApp</a>
+        <a href="https://wa.me/5491165830249" target="_blank" class="plan-cta plan-cta-filled"><span data-lang="en">Enquire via WhatsApp</span><span data-lang="es-ar">Consultá por WhatsApp</span><span data-lang="es-cr">Consulte por WhatsApp</span></a>
       </div>
-      <!-- Growth -->
       <div class="plan-card">
-        <div class="plan-pct" style="font-size:32px; margin-top:12px; margin-bottom:14px;">Custom</div>
-        <div class="plan-name">Growth Partner</div>
-        <div class="plan-desc">For investors acquiring or building properties. We co-create the strategy from day one.</div>
+        <div class="plan-pct" style="font-size:32px;margin:12px 0 14px">Custom</div>
+        <div class="plan-name"><span data-lang="en">Growth Partner</span><span data-lang="es-ar">Socio de crecimiento</span><span data-lang="es-cr">Socio de crecimiento</span></div>
+        <div class="plan-desc"><span data-lang="en">For investors acquiring or building properties. We co-create the strategy from day one.</span><span data-lang="es-ar">Para inversores que adquieren o construyen propiedades. Co-creamos la estrategia desde el día uno.</span><span data-lang="es-cr">Para inversionistas que adquieren o construyen propiedades. Creamos la estrategia juntos desde el día uno.</span></div>
         <ul class="plan-features">
-          <li><span class="plan-check">✓</span> Everything in Full Service</li>
-          <li><span class="plan-check">✓</span> Pre-acquisition market analysis</li>
-          <li><span class="plan-check">✓</span> Setup & launch management</li>
-          <li><span class="plan-check">✓</span> Brand positioning & direct booking</li>
-          <li><span class="plan-check">✓</span> Performance targets & quarterly reviews</li>
-          <li><span class="plan-check">✓</span> Custom revenue share options available</li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Everything in Full Service</span><span data-lang="es-ar">Todo lo del Servicio completo</span><span data-lang="es-cr">Todo lo del Servicio completo</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Pre-acquisition market analysis</span><span data-lang="es-ar">Análisis de mercado pre-adquisición</span><span data-lang="es-cr">Análisis de mercado previo a la compra</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Setup & launch management</span><span data-lang="es-ar">Gestión de preparación y lanzamiento</span><span data-lang="es-cr">Gestión de preparación y lanzamiento</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Brand positioning & direct booking</span><span data-lang="es-ar">Posicionamiento de marca y reservas directas</span><span data-lang="es-cr">Posicionamiento de marca y reservas directas</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Performance targets & quarterly reviews</span><span data-lang="es-ar">Objetivos de rendimiento y revisiones trimestrales</span><span data-lang="es-cr">Metas de rendimiento y revisiones trimestrales</span></li>
+          <li><span class="plan-check">✓</span><span data-lang="en">Custom revenue share options</span><span data-lang="es-ar">Opciones personalizadas de participación en ingresos</span><span data-lang="es-cr">Opciones personalizadas de participación en ingresos</span></li>
         </ul>
-        <a href="https://wa.me/5491165830249?text=I%27m%20interested%20in%20the%20Growth%20Partner%20plan" target="_blank" class="plan-cta plan-cta-outline">Let's Talk</a>
+        <a href="https://wa.me/5491165830249" target="_blank" class="plan-cta plan-cta-outline"><span data-lang="en">Let's Talk</span><span data-lang="es-ar">Hablemos</span><span data-lang="es-cr">Hablemos</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     TECHNOLOGY & REPORTING
-══════════════════════════════════════════════ -->
+<!-- ══ TECH ══ -->
 <section id="tech">
   <div class="container">
-    <div class="section-label">Technology & Reporting</div>
-    <h2 class="section-title">You own the property.<br /><em>We give you the data.</em></h2>
-    <p class="section-body">No more guessing how your property is performing. Our owner dashboard gives you full visibility — in real time.</p>
+    <div data-lang="en"><div class="section-label">Technology & Reporting</div><h2 class="section-title">You own the property.<br /><em>We give you the data.</em></h2><p class="section-body">No more guessing how your property is performing. Our owner dashboard gives you full visibility — in real time.</p></div>
+    <div data-lang="es-ar"><div class="section-label">Tecnología e informes</div><h2 class="section-title">Vos sos el dueño.<br /><em>Nosotros te damos los datos.</em></h2><p class="section-body">No más suposiciones. Nuestro panel del propietario te da visibilidad total — en tiempo real.</p></div>
+    <div data-lang="es-cr"><div class="section-label">Tecnología e informes</div><h2 class="section-title">Usted es el dueño.<br /><em>Nosotros le damos los datos.</em></h2><p class="section-body">Sin más suposiciones. Nuestro panel del propietario le brinda visibilidad total — en tiempo real.</p></div>
     <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tech-icon">📊</div>
-        <h3>Owner Dashboard</h3>
-        <p>Access your revenue, bookings, and occupancy in real time. Monthly statements delivered automatically — no chasing required.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">💰</div>
-        <h3>Dynamic Pricing Engine</h3>
-        <p>We use market data, seasonal demand, and competitor rates to adjust your pricing daily. Not weekly. Daily.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🌐</div>
-        <h3>Multi-Channel Distribution</h3>
-        <p>Your property lives on Airbnb, Booking.com, and stayinsantateresa.com — our own guest-facing OTA that drives direct bookings.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">📩</div>
-        <h3>Guest Communication</h3>
-        <p>Automated messaging for pre-arrival, check-in, and post-stay — combined with human support when guests need it.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">🔧</div>
-        <h3>Maintenance Tracking</h3>
-        <p>Every issue is logged and resolved with photo documentation. You see it. You approve it. We fix it.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tech-icon">⭐</div>
-        <h3>Review Management</h3>
-        <p>We track guest reviews, flag concerns, and build your rating systematically — because good reviews compound.</p>
-      </div>
+      <div class="tech-card"><div class="tech-icon">📊</div><h3><span data-lang="en">Owner Dashboard</span><span data-lang="es-ar">Panel del propietario</span><span data-lang="es-cr">Panel del propietario</span></h3><p><span data-lang="en">Access your revenue, bookings, and occupancy in real time. Monthly statements delivered automatically.</span><span data-lang="es-ar">Accedé a tus ingresos, reservas y ocupación en tiempo real. Estados mensuales entregados automáticamente.</span><span data-lang="es-cr">Acceda a sus ingresos, reservas y ocupación en tiempo real. Estados mensuales entregados automáticamente.</span></p></div>
+      <div class="tech-card"><div class="tech-icon">💰</div><h3><span data-lang="en">Dynamic Pricing Engine</span><span data-lang="es-ar">Motor de precios dinámicos</span><span data-lang="es-cr">Motor de precios dinámicos</span></h3><p><span data-lang="en">We use market data, seasonal demand, and competitor rates to adjust your pricing daily. Not weekly. Daily.</span><span data-lang="es-ar">Usamos datos de mercado, demanda estacional y tarifas de competencia para ajustar tus precios a diario. No semanalmente. A diario.</span><span data-lang="es-cr">Usamos datos de mercado, demanda estacional y tarifas de competencia para ajustar sus precios a diario. No semanalmente. A diario.</span></p></div>
+      <div class="tech-card"><div class="tech-icon">🌐</div><h3><span data-lang="en">Multi-Channel Distribution</span><span data-lang="es-ar">Distribución multicanal</span><span data-lang="es-cr">Distribución multicanal</span></h3><p><span data-lang="en">Your property lives on Airbnb, Booking.com, and stayinsantateresa.com — our own OTA that drives direct bookings.</span><span data-lang="es-ar">Tu propiedad está en Airbnb, Booking.com y stayinsantateresa.com — nuestra OTA propia que genera reservas directas.</span><span data-lang="es-cr">Su propiedad está en Airbnb, Booking.com y stayinsantateresa.com — nuestra OTA propia que genera reservas directas.</span></p></div>
+      <div class="tech-card"><div class="tech-icon">📩</div><h3><span data-lang="en">Guest Communication</span><span data-lang="es-ar">Comunicación con huéspedes</span><span data-lang="es-cr">Comunicación con huéspedes</span></h3><p><span data-lang="en">Automated messaging for pre-arrival, check-in, and post-stay — combined with human support when needed.</span><span data-lang="es-ar">Mensajes automatizados antes de la llegada, durante el check-in y tras la estadía — con atención humana cuando hace falta.</span><span data-lang="es-cr">Mensajes automatizados antes de la llegada, durante el check-in y tras la estadía — con atención humana cuando se necesita.</span></p></div>
+      <div class="tech-card"><div class="tech-icon">🔧</div><h3><span data-lang="en">Maintenance Tracking</span><span data-lang="es-ar">Seguimiento de mantenimiento</span><span data-lang="es-cr">Seguimiento de mantenimiento</span></h3><p><span data-lang="en">Every issue is logged and resolved with photo documentation. You see it. You approve it. We fix it.</span><span data-lang="es-ar">Cada inconveniente se registra y resuelve con documentación fotográfica. Vos lo ves. Vos lo aprobás. Nosotros lo arreglamos.</span><span data-lang="es-cr">Cada inconveniente se registra y resuelve con documentación fotográfica. Usted lo ve. Usted lo aprueba. Nosotros lo resolvemos.</span></p></div>
+      <div class="tech-card"><div class="tech-icon">⭐</div><h3><span data-lang="en">Review Management</span><span data-lang="es-ar">Gestión de reseñas</span><span data-lang="es-cr">Gestión de reseñas</span></h3><p><span data-lang="en">We track guest reviews, flag concerns, and build your rating systematically — because good reviews compound.</span><span data-lang="es-ar">Seguimos las reseñas e identificamos problemas para construir tu calificación sistemáticamente — porque las buenas reseñas se multiplican.</span><span data-lang="es-cr">Seguimos las reseñas e identificamos problemas para construir su calificación sistemáticamente — porque las buenas reseñas se multiplican.</span></p></div>
     </div>
-    <div style="margin-top: 32px; padding: 20px 28px; background: white; border-radius: var(--radius-sm); border-left: 3px solid var(--sand); display: inline-block;">
-      <p style="font-size: 14px; color: var(--muted);">📎 Our guest-facing OTA: <a href="https://stayinsantateresa.com" target="_blank" style="color: var(--forest); font-weight: 600;">stayinsantateresa.com</a> — proof of our direct booking infrastructure.</p>
+    <div style="margin-top:32px;padding:20px 28px;background:white;border-radius:var(--radius-sm);border-left:3px solid var(--sand);display:inline-block">
+      <p style="font-size:14px;color:var(--muted)">📎 <span data-lang="en">Our guest-facing OTA:</span><span data-lang="es-ar">Nuestra OTA para huéspedes:</span><span data-lang="es-cr">Nuestra OTA para huéspedes:</span> <a href="https://stayinsantateresa.com" target="_blank" style="color:var(--forest);font-weight:600">stayinsantateresa.com</a></p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     PERFORMANCE / CASE STUDY
-══════════════════════════════════════════════ -->
+<!-- ══ PERFORMANCE ══ -->
 <section id="performance">
   <div class="container">
-    <div class="section-label" style="color: var(--sand);">Real Numbers</div>
-    <h2 class="section-title">Results that<br /><em>speak plainly.</em></h2>
+    <div data-lang="en"><div class="section-label" style="color:var(--sand)">Real Numbers</div><h2 class="section-title">Results that<br /><em>speak plainly.</em></h2></div>
+    <div data-lang="es-ar"><div class="section-label" style="color:var(--sand)">Números reales</div><h2 class="section-title">Resultados que<br /><em>hablan solos.</em></h2></div>
+    <div data-lang="es-cr"><div class="section-label" style="color:var(--sand)">Números reales</div><h2 class="section-title">Resultados que<br /><em>hablan solos.</em></h2></div>
     <div class="perf-grid">
       <div>
         <div class="perf-property">
-          <div class="perf-prop-name">Casa Colibri</div>
+          <div class="perf-prop-name">Casa Colibrí</div>
           <div class="perf-prop-loc">SANTA TERESA, COSTA RICA · 2BR SURF HOUSE</div>
           <div class="perf-metrics">
-            <div class="perf-metric">
-              <div class="perf-val">78.3%</div>
-              <div class="perf-key">Occupancy Rate</div>
-            </div>
-            <div class="perf-metric">
-              <div class="perf-val">$4,200</div>
-              <div class="perf-key">Avg Monthly Revenue</div>
-            </div>
-            <div class="perf-metric">
-              <div class="perf-val">4.93 ⭐</div>
-              <div class="perf-key">Average Rating</div>
-            </div>
-            <div class="perf-metric">
-              <div class="perf-val">+47%</div>
-              <div class="perf-key">vs. Prior Year</div>
-            </div>
+            <div><div class="perf-val">78.3%</div><div class="perf-key"><span data-lang="en">Occupancy Rate</span><span data-lang="es-ar">Tasa de ocupación</span><span data-lang="es-cr">Tasa de ocupación</span></div></div>
+            <div><div class="perf-val">$4,200</div><div class="perf-key"><span data-lang="en">Avg Monthly Revenue</span><span data-lang="es-ar">Ingreso mensual promedio</span><span data-lang="es-cr">Ingreso mensual promedio</span></div></div>
+            <div><div class="perf-val">4.93 ⭐</div><div class="perf-key"><span data-lang="en">Average Rating</span><span data-lang="es-ar">Calificación promedio</span><span data-lang="es-cr">Calificación promedio</span></div></div>
+            <div><div class="perf-val">+47%</div><div class="perf-key"><span data-lang="en">vs. Prior Year</span><span data-lang="es-ar">vs. año anterior</span><span data-lang="es-cr">vs. año anterior</span></div></div>
           </div>
-          <div class="perf-note">* Results from January–December 2024. Prior year managed independently by owner.</div>
+          <div class="perf-note"><span data-lang="en">* Results from January–December 2024. Prior year managed independently by owner.</span><span data-lang="es-ar">* Resultados de enero a diciembre de 2024. Año anterior gestionado de forma independiente por el propietario.</span><span data-lang="es-cr">* Resultados de enero a diciembre de 2024. Año anterior administrado de forma independiente por el propietario.</span></div>
         </div>
-        <div class="perf-property" style="margin-top: 20px;">
+        <div class="perf-property" style="margin-top:20px">
           <div class="perf-prop-name">Villas Lapislazuli</div>
           <div class="perf-prop-loc">MALPAIS, COSTA RICA · 3 MULTI UNIT PROPERTY</div>
           <div class="perf-metrics">
-            <div class="perf-metric">
-              <div class="perf-val">74%</div>
-              <div class="perf-key">Occupancy Rate</div>
-            </div>
-            <div class="perf-metric">
-              <div class="perf-val">$6,800</div>
-              <div class="perf-key">Avg Monthly Revenue</div>
-            </div>
-            <div class="perf-metric">
-              <div class="perf-val">4.87 ⭐</div>
-              <div class="perf-key">Average Rating</div>
-            </div>
-            <div class="perf-metric">
-              <div class="perf-val">+31%</div>
-              <div class="perf-key">vs. Prior Year</div>
-            </div>
+            <div><div class="perf-val">74%</div><div class="perf-key"><span data-lang="en">Occupancy Rate</span><span data-lang="es-ar">Tasa de ocupación</span><span data-lang="es-cr">Tasa de ocupación</span></div></div>
+            <div><div class="perf-val">$6,800</div><div class="perf-key"><span data-lang="en">Avg Monthly Revenue</span><span data-lang="es-ar">Ingreso mensual promedio</span><span data-lang="es-cr">Ingreso mensual promedio</span></div></div>
+            <div><div class="perf-val">4.87 ⭐</div><div class="perf-key"><span data-lang="en">Average Rating</span><span data-lang="es-ar">Calificación promedio</span><span data-lang="es-cr">Calificación promedio</span></div></div>
+            <div><div class="perf-val">+31%</div><div class="perf-key"><span data-lang="en">vs. Prior Year</span><span data-lang="es-ar">vs. año anterior</span><span data-lang="es-cr">vs. año anterior</span></div></div>
           </div>
-          <div class="perf-note">* Results from Q1–Q3 2024 after onboarding with Stay Hosting in January.</div>
+          <div class="perf-note"><span data-lang="en">* Results from Q1–Q3 2024 after onboarding with Stay Hosting in January.</span><span data-lang="es-ar">* Resultados del Q1 al Q3 de 2024, tras incorporarse a Stay Hosting en enero.</span><span data-lang="es-cr">* Resultados del Q1 al Q3 de 2024, tras incorporarse a Stay Hosting en enero.</span></div>
         </div>
       </div>
       <div class="perf-quote">
-        <blockquote>"I was managing it myself through Airbnb and barely breaking even. Stay Hosting took over in January and I haven't had to think about it since. Revenue doubled."</blockquote>
-        <div class="perf-author">
-          <strong>Camilo P.</strong>
-          Property owner · Santa Teresa, CR
-        </div>
-        <blockquote style="margin-top: 48px;">"As a foreign investor, I needed someone I could trust with operations on the ground. They gave me data, a plan, and actually executed it."</blockquote>
-        <div class="perf-author">
-          <strong> Mike P.</strong>
-          Investor · Toronto, Canada
-        </div>
+        <blockquote><span data-lang="en">"I was managing it myself through Airbnb and barely breaking even. Stay Hosting took over in January and I haven't had to think about it since. Revenue doubled."</span><span data-lang="es-ar">"Lo gestionaba yo solo y apenas recuperaba lo invertido. Stay Hosting tomó el control en enero y desde entonces no tuve que preocuparme por nada. Los ingresos se duplicaron."</span><span data-lang="es-cr">"Lo administraba yo solo y apenas salía tablas. Stay Hosting asumió el manejo en enero y desde entonces no he tenido que preocuparme por nada. Los ingresos se duplicaron."</span></blockquote>
+        <div class="perf-author"><strong>Camilo P.</strong><span data-lang="en">Property owner · Santa Teresa, CR</span><span data-lang="es-ar">Propietario · Santa Teresa, CR</span><span data-lang="es-cr">Propietario · Santa Teresa, CR</span></div>
+        <blockquote style="margin-top:48px"><span data-lang="en">"As a foreign investor, I needed someone I could trust with operations on the ground. They gave me data, a plan, and actually executed it."</span><span data-lang="es-ar">"Como inversor extranjero, necesitaba alguien de confianza para las operaciones en el terreno. Me dieron datos, un plan y lo ejecutaron de verdad."</span><span data-lang="es-cr">"Como inversionista extranjero, necesitaba alguien de confianza para las operaciones en el terreno. Me dieron datos, un plan y lo ejecutaron de verdad."</span></blockquote>
+        <div class="perf-author"><strong>Mike P.</strong><span data-lang="en">Investor · Toronto, Canada</span><span data-lang="es-ar">Inversor · Toronto, Canadá</span><span data-lang="es-cr">Inversionista · Toronto, Canadá</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     INVESTOR SECTION
-══════════════════════════════════════════════ -->
+<!-- ══ INVESTOR ══ -->
 <section id="investor">
   <div class="container">
-    <div class="section-label">For Investors</div>
-    <h2 class="section-title">You invest.<br /><em>We operate.</em></h2>
-    <p class="section-body">We don't just manage properties — we partner with investors who want to capture returns in markets most people haven't heard of yet.</p>
+    <div data-lang="en"><div class="section-label">For Investors</div><h2 class="section-title">You invest.<br /><em>We operate.</em></h2><p class="section-body">We don't just manage properties — we partner with investors who want to capture returns in markets most people haven't heard of yet.</p></div>
+    <div data-lang="es-ar"><div class="section-label">Para inversores</div><h2 class="section-title">Vos invertís.<br /><em>Nosotros operamos.</em></h2><p class="section-body">No solo gestionamos propiedades — somos socios de inversores que quieren capturar rentabilidad en mercados que todavía no están en el radar de todos.</p></div>
+    <div data-lang="es-cr"><div class="section-label">Para inversionistas</div><h2 class="section-title">Usted invierte.<br /><em>Nosotros operamos.</em></h2><p class="section-body">No solo administramos propiedades — somos socios de inversionistas que quieren obtener rentabilidad en mercados que todavía no están en el radar de todos.</p></div>
     <div class="investor-grid">
       <div class="inv-why">
-        <h3>Why these markets?</h3>
-        <p>Costa Rica and Patagonia aren't accidental choices. These are destinations people actively seek out — for nature, lifestyle, and experiences they can't get anywhere else. They attract high-quality travellers with real budgets, and they're still in the early stages of short-term rental maturation.</p>
-        <p>We don't operate in saturated city centres. We operate in places worth traveling to.</p>
+        <h3><span data-lang="en">Why these markets?</span><span data-lang="es-ar">¿Por qué estos mercados?</span><span data-lang="es-cr">¿Por qué estos mercados?</span></h3>
+        <p><span data-lang="en">Costa Rica and Patagonia aren't accidental choices. These are destinations people actively seek out — for nature, lifestyle, and experiences they can't get anywhere else. They attract high-quality travellers with real budgets, and they're still in the early stages of short-term rental maturation.</span><span data-lang="es-ar">Costa Rica y la Patagonia no son elecciones casuales. Son destinos que la gente busca activamente — por la naturaleza, el estilo de vida y experiencias que no pueden encontrar en otro lado. Atraen a viajeros de calidad con presupuestos reales, y todavía están en las primeras etapas de maduración del alquiler temporario.</span><span data-lang="es-cr">Costa Rica y la Patagonia no son elecciones casuales. Son destinos que la gente busca activamente — por la naturaleza, el estilo de vida y experiencias únicas. Atraen a viajeros de calidad con presupuestos reales, y todavía están en las primeras etapas de maduración del alquiler vacacional.</span></p>
+        <p><span data-lang="en">We don't operate in saturated city centres. We operate in places worth traveling to.</span><span data-lang="es-ar">No operamos en centros urbanos saturados. Operamos en lugares por los que vale la pena viajar.</span><span data-lang="es-cr">No operamos en centros urbanos saturados. Operamos en lugares por los que vale la pena viajar.</span></p>
         <div class="market-cards">
-          <div class="market-card">
-            <div class="market-tag">🌿 Costa Rica</div>
-            <div class="market-name">Santa Teresa & Nicoya Peninsula</div>
-            <div class="market-desc">Consistent year-round demand, growing digital nomad market, underserved quality supply. Entry prices still competitive vs. returns.</div>
-          </div>
-          <div class="market-card">
-            <div class="market-tag">🏔 Patagonia, Argentina</div>
-            <div class="market-name">Atlantic Coast & Mountain Towns</div>
-            <div class="market-desc">Seasonal peaks with strong international demand. Nature-first travellers willing to pay premium rates for unique experiences.</div>
-          </div>
+          <div class="market-card"><div class="market-tag">🌿 Costa Rica</div><div class="market-name">Santa Teresa & <span data-lang="en">Nicoya Peninsula</span><span data-lang="es-ar">Península de Nicoya</span><span data-lang="es-cr">Península de Nicoya</span></div><div class="market-desc"><span data-lang="en">Consistent year-round demand, growing digital nomad market, underserved quality supply.</span><span data-lang="es-ar">Demanda constante todo el año, mercado de nómadas digitales en crecimiento y escasa oferta de calidad.</span><span data-lang="es-cr">Demanda constante todo el año, mercado de nómadas digitales en crecimiento y poca oferta de calidad.</span></div></div>
+          <div class="market-card"><div class="market-tag">🏔 Patagonia, Argentina</div><div class="market-name"><span data-lang="en">Lake District & Mountain Towns</span><span data-lang="es-ar">Lago Huapi y pueblos de montaña</span><span data-lang="es-cr">Lago Huapi y pueblos de montaña</span></div><div class="market-desc"><span data-lang="en">Seasonal peaks with strong international demand. Nature-first travellers paying premium rates.</span><span data-lang="es-ar">Picos estacionales con fuerte demanda internacional. Viajeros orientados a la naturaleza dispuestos a pagar tarifas premium.</span><span data-lang="es-cr">Picos estacionales con fuerte demanda internacional. Viajeros orientados a la naturaleza dispuestos a pagar tarifas premium.</span></div></div>
         </div>
       </div>
       <div class="inv-process">
-        <h3>How we work with investors</h3>
+        <h3><span data-lang="en">How we work with investors</span><span data-lang="es-ar">Cómo trabajamos con inversores</span><span data-lang="es-cr">Cómo trabajamos con inversionistas</span></h3>
         <div class="inv-steps">
-          <div class="inv-step">
-            <div class="inv-step-n">1</div>
-            <div>
-              <div class="inv-step-title">Market & Property Analysis</div>
-              <div class="inv-step-body">We identify high-potential properties or evaluate ones you've found. You get a realistic financial projection before committing.</div>
-            </div>
-          </div>
-          <div class="inv-step">
-            <div class="inv-step-n">2</div>
-            <div>
-              <div class="inv-step-title">Acquisition Support</div>
-              <div class="inv-step-body">We connect you with local legal and real estate advisors. No conflict of interest — we help you buy smart.</div>
-            </div>
-          </div>
-          <div class="inv-step">
-            <div class="inv-step-n">3</div>
-            <div>
-              <div class="inv-step-title">Setup & Launch</div>
-              <div class="inv-step-body">Interior strategy, photography, platform launch, and pricing calibration. We build your listing to perform from day one.</div>
-            </div>
-          </div>
-          <div class="inv-step">
-            <div class="inv-step-n">4</div>
-            <div>
-              <div class="inv-step-title">Ongoing Operations</div>
-              <div class="inv-step-body">Full management on the ground and remote optimization. Quarterly performance reviews with benchmarking vs. market.</div>
-            </div>
-          </div>
+          <div class="inv-step"><div class="inv-step-n">1</div><div><div class="inv-step-title"><span data-lang="en">Market & Property Analysis</span><span data-lang="es-ar">Análisis de mercado y propiedad</span><span data-lang="es-cr">Análisis de mercado y propiedad</span></div><div class="inv-step-body"><span data-lang="en">We identify high-potential properties or evaluate ones you've found. Realistic projection before you commit.</span><span data-lang="es-ar">Identificamos propiedades con alto potencial o evaluamos las que ya encontraste. Proyección realista antes de comprometerte.</span><span data-lang="es-cr">Identificamos propiedades con alto potencial o evaluamos las que usted ya encontró. Proyección realista antes de comprometerse.</span></div></div></div>
+          <div class="inv-step"><div class="inv-step-n">2</div><div><div class="inv-step-title"><span data-lang="en">Acquisition Support</span><span data-lang="es-ar">Apoyo en la adquisición</span><span data-lang="es-cr">Apoyo en la adquisición</span></div><div class="inv-step-body"><span data-lang="en">We connect you with local legal and real estate advisors. No conflict of interest — we help you buy smart.</span><span data-lang="es-ar">Te conectamos con asesores legales e inmobiliarios locales. Sin conflicto de intereses — te ayudamos a comprar bien.</span><span data-lang="es-cr">Le conectamos con asesores legales e inmobiliarios locales. Sin conflicto de intereses — le ayudamos a comprar con criterio.</span></div></div></div>
+          <div class="inv-step"><div class="inv-step-n">3</div><div><div class="inv-step-title"><span data-lang="en">Setup & Launch</span><span data-lang="es-ar">Preparación y lanzamiento</span><span data-lang="es-cr">Preparación y lanzamiento</span></div><div class="inv-step-body"><span data-lang="en">Interior strategy, photography, platform launch, and pricing calibration. Built to perform from day one.</span><span data-lang="es-ar">Estrategia de interiorismo, fotografía, lanzamiento en plataformas y calibración de precios. Listo para rendir desde el día uno.</span><span data-lang="es-cr">Estrategia de interiorismo, fotografía, lanzamiento en plataformas y calibración de precios. Listo para rendir desde el día uno.</span></div></div></div>
+          <div class="inv-step"><div class="inv-step-n">4</div><div><div class="inv-step-title"><span data-lang="en">Ongoing Operations</span><span data-lang="es-ar">Operación continua</span><span data-lang="es-cr">Operación continua</span></div><div class="inv-step-body"><span data-lang="en">Full management on the ground and remote optimization. Quarterly reviews with market benchmarking.</span><span data-lang="es-ar">Gestión completa en el terreno y optimización remota. Revisiones trimestrales con benchmarking de mercado.</span><span data-lang="es-cr">Gestión completa en el terreno y optimización remota. Revisiones trimestrales con comparativas de mercado.</span></div></div></div>
         </div>
         <div class="inv-cta-box">
-          <p>Ready to explore an investment? We'll send you a market brief for the destination you're interested in — no strings attached.</p>
-          <a href="https://wa.me/5491165830249?text=I%27m%20an%20investor%20and%20I%27d%20like%20a%20market%20brief" target="_blank" class="btn-primary" style="font-size: 15px; padding: 14px 24px;">
-            <span>💬</span> Request a Market Brief
-          </a>
+          <p><span data-lang="en">Ready to explore an investment? We'll send you a market brief for the destination you're interested in — no strings attached.</span><span data-lang="es-ar">¿Listo para explorar una inversión? Te enviamos un informe de mercado del destino que te interesa — sin compromiso.</span><span data-lang="es-cr">¿Listo para explorar una inversión? Le enviamos un informe de mercado del destino que le interesa — sin compromiso.</span></p>
+          <a href="https://wa.me/5491165830249" target="_blank" class="btn-primary" style="font-size:15px;padding:14px 24px">💬 <span data-lang="en">Request a Market Brief</span><span data-lang="es-ar">Pedí un informe de mercado</span><span data-lang="es-cr">Solicite un informe de mercado</span></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     TRUST SECTION
-══════════════════════════════════════════════ -->
+<!-- ══ TRUST ══ -->
 <section id="trust">
   <div class="container">
-    <div class="section-label">Why Owners Choose Us</div>
-    <h2 class="section-title">Built on <em>transparency</em><br />and real performance.</h2>
+    <div data-lang="en"><div class="section-label">Why Owners Choose Us</div><h2 class="section-title">Built on <em>transparency</em><br />and real performance.</h2></div>
+    <div data-lang="es-ar"><div class="section-label">Por qué los propietarios nos eligen</div><h2 class="section-title">Construido sobre <em>transparencia</em><br />y resultados reales.</h2></div>
+    <div data-lang="es-cr"><div class="section-label">Por qué los propietarios nos eligen</div><h2 class="section-title">Construido sobre <em>transparencia</em><br />y resultados reales.</h2></div>
     <div class="trust-grid">
-      <div class="trust-card">
-        <div class="trust-num">24h</div>
-        <div class="trust-label">Response time to owners — always</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-num">4.9 ⭐</div>
-        <div class="trust-label">Average guest rating across portfolio</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-num">78%</div>
-        <div class="trust-label">Average annual occupancy across properties</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-num">0</div>
-        <div class="trust-label">Hidden fees or surprise charges</div>
-      </div>
+      <div class="trust-card"><div class="trust-num">24h</div><div class="trust-label"><span data-lang="en">Response time to owners — always</span><span data-lang="es-ar">Tiempo de respuesta a propietarios — siempre</span><span data-lang="es-cr">Tiempo de respuesta a propietarios — siempre</span></div></div>
+      <div class="trust-card"><div class="trust-num">4.9 ⭐</div><div class="trust-label"><span data-lang="en">Average guest rating across portfolio</span><span data-lang="es-ar">Calificación promedio de huéspedes en todo el portafolio</span><span data-lang="es-cr">Calificación promedio de huéspedes en todo el portafolio</span></div></div>
+      <div class="trust-card"><div class="trust-num">78%</div><div class="trust-label"><span data-lang="en">Average annual occupancy</span><span data-lang="es-ar">Ocupación anual promedio</span><span data-lang="es-cr">Ocupación anual promedio</span></div></div>
+      <div class="trust-card"><div class="trust-num">0</div><div class="trust-label"><span data-lang="en">Hidden fees or surprise charges</span><span data-lang="es-ar">Cargos ocultos o sorpresas</span><span data-lang="es-cr">Cargos ocultos o sorpresas</span></div></div>
     </div>
     <div class="trust-pillars">
-      <div class="pillar">
-        <div class="pillar-icon">🔍</div>
-        <h4>Full Transparency</h4>
-        <p>Every reservation, every expense, every review — documented and shared with you monthly. We don't hide behind vague reports.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">📵</div>
-        <h4>Less Platform Dependency</h4>
-        <p>We actively build your direct booking channel through our own OTA and guest retention — so you're not entirely at Airbnb's mercy.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🤝</div>
-        <h4>Flexible Involvement</h4>
-        <p>Want to be fully hands-off? Done. Want monthly calls and input on pricing? Also fine. We adapt to how you want to own.</p>
-      </div>
+      <div class="pillar"><div class="pillar-icon">🔍</div><h4><span data-lang="en">Full Transparency</span><span data-lang="es-ar">Transparencia total</span><span data-lang="es-cr">Transparencia total</span></h4><p><span data-lang="en">Every reservation, every expense, every review — documented and shared monthly. We don't hide behind vague reports.</span><span data-lang="es-ar">Cada reserva, cada gasto, cada reseña — documentado y compartido mensualmente. No nos escondemos detrás de informes vagos.</span><span data-lang="es-cr">Cada reserva, cada gasto, cada reseña — documentado y compartido mensualmente. No nos escondemos detrás de informes vagos.</span></p></div>
+      <div class="pillar"><div class="pillar-icon">📵</div><h4><span data-lang="en">Less Platform Dependency</span><span data-lang="es-ar">Menos dependencia de plataformas</span><span data-lang="es-cr">Menos dependencia de plataformas</span></h4><p><span data-lang="en">We actively build your direct booking channel through our own OTA — so you're not entirely at Airbnb's mercy.</span><span data-lang="es-ar">Construimos activamente tu canal de reservas directas a través de nuestra OTA — para que no dependas de Airbnb.</span><span data-lang="es-cr">Construimos activamente su canal de reservas directas a través de nuestra OTA — para que no dependa de Airbnb.</span></p></div>
+      <div class="pillar"><div class="pillar-icon">🤝</div><h4><span data-lang="en">Flexible Involvement</span><span data-lang="es-ar">Participación flexible</span><span data-lang="es-cr">Participación flexible</span></h4><p><span data-lang="en">Want to be fully hands-off? Done. Want monthly calls and input on pricing? Also fine. We adapt to how you want to own.</span><span data-lang="es-ar">¿Querés desvincularte? Hecho. ¿Querés reuniones mensuales y opinar sobre los precios? También. Nos adaptamos a cómo querés ser propietario.</span><span data-lang="es-cr">¿Quiere desvincularse? Listo. ¿Quiere reuniones mensuales y opinar sobre los precios? También. Nos adaptamos a cómo usted quiere ser propietario.</span></p></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     ABOUT
-══════════════════════════════════════════════ -->
+<!-- ══ ABOUT ══ -->
 <section id="about">
   <div class="container">
-    <div style="text-align: center; margin-bottom: 60px;">
-      <div class="section-label" style="text-align:center;">Our Story</div>
-      <h2 class="section-title" style="text-align:center;">We built this<br /><em>on purpose.</em></h2>
+    <div style="text-align:center;margin-bottom:60px">
+      <div data-lang="en"><div class="section-label" style="text-align:center">Our Story</div><h2 class="section-title" style="text-align:center">We built this<br /><em>on purpose.</em></h2></div>
+      <div data-lang="es-ar"><div class="section-label" style="text-align:center">Nuestra historia</div><h2 class="section-title" style="text-align:center">Lo construimos<br /><em>con intención.</em></h2></div>
+      <div data-lang="es-cr"><div class="section-label" style="text-align:center">Nuestra historia</div><h2 class="section-title" style="text-align:center">Lo construimos<br /><em>con intención.</em></h2></div>
     </div>
-    <div class="about-story" style="margin: 0 auto;">
-      <p>Stay Hosting wasn't built to be another property manager. It was built because we believe <strong>the places people travel to for real experiences deserve better operations.</strong></p>
-      <p>We started with a simple observation: the most compelling short-term rental markets — tropical coastlines, mountain towns, places where nature is the attraction — were being managed like commodity products. Generic listings. Static pricing. Absentee owners getting generic reports once a month.</p>
-      <p>We operate across two countries not because it's complicated, but because it <strong>makes us better</strong>. Our Costa Rica team is on the ground, living in the communities we work in. Our Argentina team handles the data-heavy work: revenue optimization, guest communication, analytics. Together, we built something that neither could do alone.</p>
-      <p>We choose our destinations carefully. <strong>From tropical beaches and rainforest on the Nicoya Peninsula to the lakes and mountains of Patagonia</strong> — we only operate in places people actually want to be. That's not marketing. It's strategy.</p>
+    <div class="about-story">
+      <div data-lang="en">
+        <p>Stay Hosting wasn't built to be another property manager. It was built because we believe <strong>the places people travel to for real experiences deserve better operations.</strong></p>
+        <p>We started with a simple observation: the most compelling short-term rental markets — tropical coastlines, mountain towns, places where nature is the attraction — were being managed like commodity products. Generic listings. Static pricing. Absentee owners getting vague reports once a month.</p>
+        <p>We operate across two countries not because it's complicated, but because it <strong>makes us better</strong>. Our Costa Rica team is on the ground, living in the communities we work in. Our Argentina team handles the data-heavy work: revenue optimization, guest communication, analytics. Together, we built something neither could do alone.</p>
+        <p><strong>From tropical beaches and rainforest on the Nicoya Peninsula to the lakes and mountains of Patagonia</strong> — we only operate in places people actually want to be.</p>
+      </div>
+      <div data-lang="es-ar">
+        <p>Stay Hosting no nació para ser otra administradora de propiedades. Nació porque creemos que <strong>los lugares a los que la gente viaja por experiencias reales merecen una operación de otro nivel.</strong></p>
+        <p>Empezamos con una observación simple: los mercados de alquiler temporario más interesantes — costas tropicales, pueblos de montaña, lugares donde la naturaleza es el atractivo — estaban siendo gestionados como productos genéricos. Publicaciones sin diferenciación. Precios estáticos. Propietarios ausentes recibiendo informes vagos una vez al mes.</p>
+        <p>Operamos en dos países no porque sea complicado, sino porque <strong>nos hace mejores</strong>. Nuestro equipo en Costa Rica está en el terreno, viviendo en las comunidades donde trabajamos. Nuestro equipo en Argentina se encarga del trabajo analítico: optimización de ingresos, comunicación con huéspedes, analytics. Juntos, construimos algo que ninguno podría hacer solo.</p>
+        <p><strong>Desde las playas tropicales y la selva de la Península de Nicoya hasta los lagos y montañas de la Patagonia</strong> — solo operamos en lugares a los que la gente realmente quiere ir.</p>
+      </div>
+      <div data-lang="es-cr">
+        <p>Stay Hosting no nació para ser una administradora de propiedades más. Nació porque creemos que <strong>los lugares a los que la gente viaja por experiencias auténticas merecen una operación de otro nivel.</strong></p>
+        <p>Empezamos con una observación sencilla: los mercados de alquiler vacacional más interesantes — costas tropicales, pueblos de montaña, lugares donde la naturaleza es el atractivo — estaban siendo administrados como productos genéricos. Anuncios sin diferenciación. Precios estáticos. Propietarios ausentes recibiendo informes vagos una vez al mes.</p>
+        <p>Operamos en dos países no porque sea complicado, sino porque <strong>nos hace mejores</strong>. Nuestro equipo en Costa Rica está en el terreno, viviendo en las comunidades donde trabajamos. Nuestro equipo en Argentina se encarga del trabajo analítico: optimización de ingresos, comunicación con huéspedes, analítica. Juntos, construimos algo que ninguno podría hacer solo.</p>
+        <p><strong>Desde las playas tropicales y los bosques de la Península de Nicoya hasta los lagos y montañas de la Patagonia</strong> — solo operamos en lugares a los que la gente realmente quiere llegar.</p>
+      </div>
     </div>
     <div class="about-values">
-      <div class="value-card">
-        <div class="value-icon">🌿</div>
-        <h4>Nature-First Destinations</h4>
-        <p>We intentionally choose small, high-potential destinations where lifestyle is the draw. Not mass tourism. Not cities.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">📈</div>
-        <h4>Performance-Driven</h4>
-        <p>We don't earn if you don't earn. Our fee model keeps us aligned with your results — not just our management comfort.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">🤝</div>
-        <h4>Owners as Partners</h4>
-        <p>We treat every property like we own it. Because when we perform, everyone wins — and we intend to keep winning.</p>
-      </div>
+      <div class="value-card"><div class="value-icon">🌿</div><h4><span data-lang="en">Nature-First Destinations</span><span data-lang="es-ar">Destinos de naturaleza primero</span><span data-lang="es-cr">Destinos de naturaleza primero</span></h4><p><span data-lang="en">We intentionally choose small, high-potential destinations where lifestyle is the draw. Not mass tourism. Not cities.</span><span data-lang="es-ar">Elegimos intencionalmente destinos pequeños y con alto potencial donde el estilo de vida es el atractivo. Sin turismo masivo. Sin ciudades.</span><span data-lang="es-cr">Elegimos intencionalmente destinos pequeños y con alto potencial donde el estilo de vida es el atractivo. Sin turismo masivo. Sin ciudades.</span></p></div>
+      <div class="value-card"><div class="value-icon">📈</div><h4><span data-lang="en">Performance-Driven</span><span data-lang="es-ar">Orientados al rendimiento</span><span data-lang="es-cr">Orientados al rendimiento</span></h4><p><span data-lang="en">We don't earn if you don't earn. Our fee model keeps us aligned with your results — not just our management comfort.</span><span data-lang="es-ar">No ganamos si vos no ganás. Nuestro modelo de honorarios nos mantiene alineados con tus resultados — no solo con nuestra comodidad de gestión.</span><span data-lang="es-cr">No ganamos si usted no gana. Nuestro modelo de honorarios nos mantiene alineados con sus resultados — no solo con nuestra comodidad de gestión.</span></p></div>
+      <div class="value-card"><div class="value-icon">🤝</div><h4><span data-lang="en">Owners as Partners</span><span data-lang="es-ar">Propietarios como socios</span><span data-lang="es-cr">Propietarios como socios</span></h4><p><span data-lang="en">We treat every property like we own it. Because when we perform, everyone wins — and we intend to keep winning.</span><span data-lang="es-ar">Tratamos cada propiedad como si fuera nuestra. Porque cuando rendimos bien, todos ganan — y tenemos la intención de seguir ganando.</span><span data-lang="es-cr">Tratamos cada propiedad como si fuera nuestra. Porque cuando rendimos bien, todos ganan — y tenemos la intención de seguir ganando.</span></p></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     WHATSAPP CTA BLOCK
-══════════════════════════════════════════════ -->
+<!-- ══ CONTACT ══ -->
 <section id="contact">
   <div class="container">
-    <div class="section-label">Get In Touch</div>
-    <h2 class="section-title">Ready to earn more<br /><em>from your property?</em></h2>
-    <p>No lengthy intake forms. No sales calls. Just a direct conversation on WhatsApp — we'll ask the right questions and give you an honest assessment within 24 hours.</p>
-    <div class="contact-actions">
-      <a href="https://wa.me/5491165830249?text=Hi%2C%20I%27m%20interested%20in%20Stay%20Hosting%20for%20my%20property" target="_blank" class="wa-big">
-        <span class="wa-icon">💬</span> Start on WhatsApp
-      </a>
-      <a href="mailto:hello@stay-hosting.com" class="form-alt">✉ Email Us Instead</a>
+    <div data-lang="en">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Ready to earn more<br /><em>from your property?</em></h2>
+      <p class="contact-body">No lengthy intake forms. No sales calls. Just a direct conversation on WhatsApp — we'll ask the right questions and give you an honest assessment within 24 hours.</p>
+      <div class="contact-actions">
+        <a href="https://wa.me/5491165830249?text=Hi%2C%20I%27m%20interested%20in%20Stay%20Hosting" target="_blank" class="wa-big">💬 Start on WhatsApp</a>
+        <a href="mailto:hello@stay-hosting.com" class="form-alt">✉ Email Us Instead</a>
+      </div>
+      <div class="contact-notes">
+        <div class="contact-note">✓ Response within 24 hours</div>
+        <div class="contact-note">✓ No commitment required</div>
+        <div class="contact-note">✓ English, Spanish & Portuguese</div>
+      </div>
     </div>
-    <div class="contact-notes">
-      <div class="contact-note">✓ Response within 24 hours</div>
-      <div class="contact-note">✓ No commitment required</div>
-      <div class="contact-note">✓ Available in English, Spanish & Portuguese</div>
+    <div data-lang="es-ar">
+      <div class="section-label">Contacto</div>
+      <h2 class="section-title">¿Listo para ganar más<br /><em>con tu propiedad?</em></h2>
+      <p class="contact-body">Sin formularios interminables. Sin llamadas de ventas. Solo una conversación directa por WhatsApp — te hacemos las preguntas correctas y te damos una evaluación honesta en 24 horas.</p>
+      <div class="contact-actions">
+        <a href="https://wa.me/5491165830249?text=Hola%2C%20me%20interesa%20Stay%20Hosting" target="_blank" class="wa-big">💬 Escribinos por WhatsApp</a>
+        <a href="mailto:hello@stay-hosting.com" class="form-alt">✉ Mandarnos un mail</a>
+      </div>
+      <div class="contact-notes">
+        <div class="contact-note">✓ Respuesta en menos de 24 horas</div>
+        <div class="contact-note">✓ Sin compromiso</div>
+        <div class="contact-note">✓ Español, inglés y portugués</div>
+      </div>
+    </div>
+    <div data-lang="es-cr">
+      <div class="section-label">Contáctenos</div>
+      <h2 class="section-title">¿Listo para ganar más<br /><em>con su propiedad?</em></h2>
+      <p class="contact-body">Sin formularios interminables. Sin llamadas de ventas. Solo una conversación directa por WhatsApp — le hacemos las preguntas correctas y le damos una evaluación honesta en 24 horas.</p>
+      <div class="contact-actions">
+        <a href="https://wa.me/5491165830249?text=Hola%2C%20me%20interesa%20Stay%20Hosting" target="_blank" class="wa-big">💬 Escríbanos por WhatsApp</a>
+        <a href="mailto:hello@stay-hosting.com" class="form-alt">✉ Enviarnos un correo</a>
+      </div>
+      <div class="contact-notes">
+        <div class="contact-note">✓ Respuesta en menos de 24 horas</div>
+        <div class="contact-note">✓ Sin compromiso</div>
+        <div class="contact-note">✓ Español, inglés y portugués</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════════ -->
+<!-- ══ FOOTER ══ -->
 <footer>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#" class="nav-logo">
-  <img src="https://raw.githubusercontent.com/stayinsantateresa/stayhosting/main/logo%20png%20blanco%20fondo%20transparente.png" alt="Stay Hosting" style="height: 40px; width: auto; display: block;" />
-</a>
-        <p>Boutique hospitality management for property owners and investors in Costa Rica and Patagonia.</p>
+        <a href="#"><img class="footer-logo" src="https://raw.githubusercontent.com/stayinsantateresa/stayhosting/main/logo%20png%20blanco%20fondo%20transparente.png" alt="Stay Hosting" /></a>
+        <p><span data-lang="en">Boutique hospitality management for property owners and investors in Costa Rica and Patagonia.</span><span data-lang="es-ar">Gestión boutique de hospitalidad para propietarios e inversores en Costa Rica y la Patagonia.</span><span data-lang="es-cr">Administración boutique de hospitalidad para propietarios e inversionistas en Costa Rica y la Patagonia.</span></p>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
-        <a href="#how">How It Works</a>
-        <a href="#services">Services & Pricing</a>
-        <a href="#performance">Results</a>
-        <a href="#about">About Us</a>
+        <h5><span data-lang="en">Company</span><span data-lang="es-ar">Empresa</span><span data-lang="es-cr">Empresa</span></h5>
+        <a href="#how"><span data-lang="en">How It Works</span><span data-lang="es-ar">Cómo funciona</span><span data-lang="es-cr">Cómo funciona</span></a>
+        <a href="#services"><span data-lang="en">Services & Pricing</span><span data-lang="es-ar">Servicios y precios</span><span data-lang="es-cr">Servicios y tarifas</span></a>
+        <a href="#performance"><span data-lang="en">Results</span><span data-lang="es-ar">Resultados</span><span data-lang="es-cr">Resultados</span></a>
+        <a href="#about"><span data-lang="en">About Us</span><span data-lang="es-ar">Nosotros</span><span data-lang="es-cr">Nosotros</span></a>
       </div>
       <div class="footer-col">
-        <h5>For Investors</h5>
-        <a href="#investor">Invest with Us</a>
-        <a href="#investor">Market Briefs</a>
-        <a href="https://wa.me/5491165830249" target="_blank">Talk to Our Team</a>
+        <h5><span data-lang="en">For Investors</span><span data-lang="es-ar">Para inversores</span><span data-lang="es-cr">Para inversionistas</span></h5>
+        <a href="#investor"><span data-lang="en">Invest with Us</span><span data-lang="es-ar">Invertí con nosotros</span><span data-lang="es-cr">Invierta con nosotros</span></a>
+        <a href="#investor"><span data-lang="en">Market Briefs</span><span data-lang="es-ar">Informes de mercado</span><span data-lang="es-cr">Informes de mercado</span></a>
+        <a href="https://wa.me/5491165830249" target="_blank"><span data-lang="en">Talk to Our Team</span><span data-lang="es-ar">Hablá con el equipo</span><span data-lang="es-cr">Hable con el equipo</span></a>
       </div>
       <div class="footer-col">
-        <h5>Destinations</h5>
+        <h5><span data-lang="en">Destinations</span><span data-lang="es-ar">Destinos</span><span data-lang="es-cr">Destinos</span></h5>
         <a href="#">Santa Teresa, CR</a>
-        <a href="#">Nicoya Peninsula, CR</a>
+        <a href="#"><span data-lang="en">Nicoya Peninsula, CR</span><span data-lang="es-ar">Península de Nicoya, CR</span><span data-lang="es-cr">Península de Nicoya, CR</span></a>
         <a href="#">Patagonia, AR</a>
-        <a href="#">Lake District, AR</a>
+        <a href="#"><span data-lang="en">Lake District, AR</span><span data-lang="es-ar">Distrito de los Lagos, AR</span><span data-lang="es-cr">Distrito de los Lagos, AR</span></a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Stay Hosting. All rights reserved.</p>
-      <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
-        <p style="color:rgba(245,240,232,0.3); font-size:13px;">Our guest platform →</p>
+      <p>© 2025 Stay Hosting. <span data-lang="en">All rights reserved.</span><span data-lang="es-ar">Todos los derechos reservados.</span><span data-lang="es-cr">Todos los derechos reservados.</span></p>
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <p style="color:rgba(245,240,232,0.3);font-size:13px"><span data-lang="en">Our guest platform →</span><span data-lang="es-ar">Nuestra plataforma para huéspedes →</span><span data-lang="es-cr">Nuestra plataforma para huéspedes →</span></p>
         <a href="https://stayinsantateresa.com" target="_blank" class="footer-ota">🌿 stayinsantateresa.com</a>
       </div>
     </div>
   </div>
 </footer>
 
+<script>
+  function setLang(btn, lang) {
+    document.body.setAttribute('data-active-lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const langMap = { en: 'en', 'es-ar': 'es-AR', 'es-cr': 'es-CR' };
+    document.documentElement.lang = langMap[lang];
+    const titles = {
+      en: 'Stay Hosting — Property Management & Investment in Costa Rica & Patagonia',
+      'es-ar': 'Stay Hosting — Gestión de Propiedades e Inversión en Costa Rica y Patagonia',
+      'es-cr': 'Stay Hosting — Administración de Propiedades e Inversión en Costa Rica y Patagonia'
+    };
+    document.title = titles[lang];
+  }
+</script>
 </body>
 </html>
